@@ -1,0 +1,3 @@
+Scaling Simplicity
+==================
+My blog
