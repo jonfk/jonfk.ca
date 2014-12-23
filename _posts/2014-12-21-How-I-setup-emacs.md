@@ -14,7 +14,9 @@ emacs, the ease of extending the capabilities of your editor to suit your needs 
 worthwhile. I haven't given a real try to elisp yet (that's on my todo list) but binding a function
 to a keymap is much easier to do and extending the functionality of your editor through it's API.
 
-One of the well known sayings about emacs is : "a great operating system, lacking only a decent editor"
+One of the well known sayings about emacs is : "a great operating system, lacking only a decent editor".
+So although the default editor that comes with emacs is not great, you can make it <i>your</i> best editor.
+The following packages are what makes emacs a better editor for me.
 
 ##EVIL
 The most important piece of my emacs config is evil-mode. Evil brings modal editing to emacs and

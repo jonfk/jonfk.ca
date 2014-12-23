@@ -68,7 +68,7 @@ img {
     }
 }
 
-/* Navbar stuff */
+/* Navbar stuff
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -77,11 +77,25 @@ img {
 }
 
 .navbar li {
-    float:left;
-    width:80px;
+    display: table-cell;
+    float: left;
+    width: 80px;
+}
+*/
+.navbar ul {
+    list-style-type: none;
+    display: table;
+    width: 50%;
+    overflow: hidden;
 }
 
-.navbar li a {
+.navbar li {
+    display: table-cell;
+    width: 33.3%;
+    text-align: center;
+}
+
+.navbar a {
     display: block;
     width: 70px;
     text-align: center;
