@@ -12,7 +12,8 @@ After a few years of vim usage, you could wonder why I switched, especially sinc
 my way to set up emacs to replicate how I was using vim. Extensibility is the main reason. In
 emacs, the ease of extending the capabilities of your editor to suit your needs makes my switch
 worthwhile. I haven't given a real try to elisp yet (that's on my todo list) but binding a function
-to a keymap is much easier to do and extending the functionality of your editor through it's API.
+to a keymap is much easier to do and extending the functionality of your editor through it's API is
+a breeze.
 
 One of the well known sayings about emacs is : "a great operating system, lacking only a decent editor".
 So although the default editor that comes with emacs is not great, you can make it <i>your</i> best editor.
@@ -35,4 +36,4 @@ Although not as essential as it's namesake mode, evil-leader is useful to preven
 of emacs obscure keybindings to a simple 2 keypress. For example I map my leader to the `,` key and
 `kill-buffer` is mapped to k, so to kill the current buffer I do `,-k`
 
-My config is linked here: [.emacs]()
+My config is linked here: [.emacs](https://github.com/jonfk/dotfiles/blob/master/.emacs)
