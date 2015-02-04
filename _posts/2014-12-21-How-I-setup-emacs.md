@@ -4,6 +4,8 @@ title: How I setup my emacs config
 tags: emacs configurations productivity editors
 ---
 
+*Last Edited 04 Feb 2015*
+
 First some background. I used vim for about 2 years. It was my first real editor back when I was a
 first year CompSci student. It was a hard road in the beginning, learning modal editing, the
 quirks of vim's configuration and various useful plugins using [Tim Pope's pathogen](https://github.com/tpope/vim-pathogen).
@@ -22,8 +24,8 @@ The following packages are what makes emacs a better editor for me.
 ##EVIL
 The most important piece of my emacs config is evil-mode. Evil brings modal editing to emacs and
 replicates many of vim's features. All the keybindings I was used to in vim are there. I don't claim
-to be the most advanced vim user out there. There are many that use vim's advanced features in
-such a way that would prevent them to switch, but if your main reason to stay with vim is modal
+to be the most advanced vim user out there. There are many who use vim's advanced features in
+such a way that would prevent them from switching, but if your main reason to stay with vim is modal
 editing, I urge you to give evil a try.
 
 ##package.el
