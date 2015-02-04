@@ -1,2 +1,5 @@
-markdown: rdiscount
-pygments: true
+markdown: redcarpet
+highlighter: pygments
+
+redcarpet:
+  extensions: []
