@@ -1,8 +1,11 @@
 ---
 layout: post
-title: What I learned from Functional Programming Principles by Martin Odersky
+title: What I learned from Functional Programming Principles
 tags: learning language functional programming scala coursera
 ---
+
+Functional Programming Principles is a course taught at Ecole polytechnique fédérale de lausanne and
+on coursera by Prof. Martin Odersky.
 
 I originally took the class to get familiar with scala before tackling the more interesting
 class by Martin 'Principles of Reactive Programmin' which is about asynchronous computation and
