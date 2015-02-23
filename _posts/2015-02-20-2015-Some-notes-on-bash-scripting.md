@@ -22,6 +22,10 @@ simple scripts, I think it is still a useful skill to learn to script with your 
 I have been doing some devops works recently and had to use a lot of shell scripting to glue together
 the continuous integration pipeline. I don't claim to be a bash expert but here are some tips I picked up.
 
+##Don't hardcode the path to bash in your shebang
+Instead use ```#!/usr/bin/env bash```. This allows your script to be more portable since bash
+is not always located under /bin/bash in all linux distros.
+
 ##Always use set -e
 When running most scripts that are not simple on off jobs, you may want to be notified of an error
 occurring and stop the execution of the script. By using "set -e" at the top of your script, it
@@ -33,6 +37,7 @@ commands to run.
 set -e
 ```
 
+
 ##Use set -x for better debugging and logs
 When running a script whose output will be captured such as in a ci pipeline, it is useful
 to know what command was running last when something occurred, such as when an exception
@@ -41,6 +46,7 @@ occurred. Pretty useful for logs for this same reason.
 ```bash
 set -x
 ```
+
 
 ##Use getopts for easy command line options
 Instead of parsing the command line parameters manually you can simply use the getopts
