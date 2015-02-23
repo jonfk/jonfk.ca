@@ -55,7 +55,7 @@ library to do the job. It supports only short command line options to make thing
 ```bash
 #!/usr/bin/env bash
 
-while getopts "h:s" OPTION; do
+while getopts "h:f" OPTION; do
   case $OPTION in
     h)
       echo "usage"
@@ -67,10 +67,12 @@ while getopts "h:s" OPTION; do
   esac
 done
 ```
+
 A column ':' before a character tells getopts which character needs a value.
 A column ':' at the beginning of the optstring (e.g. ":h:s") sets OPTION var
 with “?” and the $OPTARG with the wrong character and no output to stderr.
-Otherwise it would print an illegal argument message to stderr.
+Otherwise it would print an illegal argument message to stderr, if an invalid flag
+is used.
 
 ##Print a multiline string
 Instead of printing with several echos for each line use here documents.
