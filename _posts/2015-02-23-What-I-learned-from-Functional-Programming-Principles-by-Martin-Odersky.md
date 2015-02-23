@@ -42,3 +42,5 @@ I liked the course overall as it was a good refresher on functional programming 
 to gain familiarity to Scala which is probably a factor for why Scala is gaining popularity in
 some circles. Scala is an interesting language which mixes object oriented programming with
 functional programming in a way that feels very natural.
+
+You can see my notes on the course at : [Link](https://github.com/jonfk/notes/blob/master/cs/scala/Functional.Programming.Principles.md)
