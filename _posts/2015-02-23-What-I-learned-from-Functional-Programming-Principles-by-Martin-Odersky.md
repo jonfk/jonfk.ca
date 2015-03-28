@@ -8,7 +8,7 @@ Functional Programming Principles is a course taught at Ecole polytechnique féd
 on coursera by Prof. Martin Odersky.
 
 I originally took the class to get familiar with scala before tackling the more interesting
-class by Martin 'Principles of Reactive Programmin' which is about asynchronous computation and
+class by Martin 'Principles of Reactive Programming' which is about asynchronous computation and
 distributed computation. I had already had an intro to functional programming through SML in the
 COMP302 class taught at McGill by the brilliant Prof. Brigitte Pientka.
 
@@ -17,7 +17,7 @@ model of how to think about functional programs. It is interesting to note that 
 introduction to programming which I think is better than the usual hello world program many intro
 cs classes start with.
 
-The rest of the class is about functional programming in scala and the various datastructures
+The rest of the class is about functional programming in scala and the various data structures
 available in the extensive scala standard library, such as lists, sets, maps and streams.
 The type hierarchy of the collections library is as follows:
 
