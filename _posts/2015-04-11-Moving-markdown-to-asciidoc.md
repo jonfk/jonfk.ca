@@ -23,7 +23,8 @@ as markdown with much more power for richer formatting if needed. I have already
 documents over to asciidoc and the process has gone swimmingly well.
 
 Here is a simple readme in asciidoc:
-```asciidoc
+
+```
 = Readme
 Author Name <name@email.com>
 
@@ -45,5 +46,6 @@ collatz n
 ```
 
 Some quick references while writing your asciidoc documents:
+
 - [Asciidoc quick reference](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/)
 - [http://asciidoctor.org/docs/user-manual](Asciidoctor User Manual)
