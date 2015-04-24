@@ -6,15 +6,17 @@ tags: learning markup documentation writing
 
 Markdown is probably the most popular markup language in the tech community. Often used in
 comment sections, blogs (such as jekyll), readmes on github or even documentation. Its popularity can
-easily be explained by its simplicity and extensibility, but this simplicity also explains why there
-are so many flavours of markdown. If you are interested in markdown, it is worthwhile to check out
+easily be explained by its simplicity and extensibility, but this simplicity is both it's advantage
+and it's biggest weak point. Markdown is so simple that most of its users often extend it into a dialect and
+that's why there are so many versions of markdown (github markdown, stackoverflow markdown, etc...).
+If you are interested in markdown, it is worthwhile to check out
 [CommonMark](http://commonmark.org/) which is a positive step in trying to standardize markdown and
 specify many of its extensions.
 
-I have been using markdown for a few years and unless I am writing a long form document for which
-the formatting needs to be richer, I am often writing in markdown. It is very readable and the fact that
+I have been using markdown for a few years and unless I am writing a long form document with
+rich formatting, I am often writing in markdown. It is very readable, easy and quick to write, and the fact that
 github renders markdown are the main reasons for why I use it, but I have been noticing some problems
-when it comes to writing slightly longer documents with structure. Breaking out LaTex would not be very
+when it comes to writing slightly longer documents with structure such as notes. Breaking out LaTeX would not be very
 productive, so I found a solution: [asciidoc](http://en.wikipedia.org/wiki/AsciiDoc).
 
 Asciidoc is also a readable document format which has equivalents for any of markdowns constructs and more.
