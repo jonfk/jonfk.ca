@@ -4,15 +4,28 @@ title: Experiments with Processing
 tags: learning markup art drawing language
 ---
 
-I am moving to a new apartment soon and in the process have to buy new furniture. To help with this task
-I measured the dimensions of my apartment and drew a rough sketch of what my apartment looks like. But my
-inner geek required me to map it out and have a digital copy of the map.
+Processing is a programming language targeted at electronic arts and visual design communities.
+It can serve as the foundation for electronic sketchbooks and aims to teach it's target communities
+programming in a visual context. At it's core processing is a simple programming language with a very
+lightweight c style syntax, similarly to Java in which it is implemented.
 
-The simplest way to do that would obviously to draw it using paint, but I have been wanting to try processing
-for a while and this gave me the perfect reason to try it out. I have tried d3.js for some data visualization
-but I wasn't able to use it to it's full potential.
+There are now several implementations of Processing such as the one used on this page using
+[Processing.js](http://processingjs.org/). The original one is still the easiest one to use
+in my opinion but I haven't given a try to the others very thoroughly.
 
+##The context
 
+I am moving to a new apartment soon and in the process of buying new furniture I have to map out the dimensions
+of my apartment. I could do a simple paper sketch or simply draw the map in a paint program but my inner geek
+compels me to try out something new. I have tried several declarative visual programming languages but I haven't
+found any that I was comfortable with. It may simply be because I am just not made for visual design but I wanted to
+give this another chance.
+
+I tried D3.js for data visualizations and a few graphing libraries in javascript but after trying Processing again,
+I can state that Processing seems to have the simplest semantics as well as being the most flexible in what it can do.
+It even has 3D visualizations!
+
+Without much more ado here is the map of my apartment.
 
 ##The Map:
 <script src="/js/processing.js"></script>
