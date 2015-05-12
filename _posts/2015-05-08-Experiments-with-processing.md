@@ -6,8 +6,8 @@ tags: learning markup art drawing language
 
 Processing is a programming language targeted at electronic arts and visual design communities.
 It can serve as the foundation for electronic sketchbooks and aims to teach it's target communities
-programming in a visual context. At it's core processing is a simple programming language with a very
-lightweight c style syntax, similarly to Java in which it is implemented.
+programming in a visual context. At its core processing is a simple programming language with a very
+lightweight C-style syntax, similar to Java in which it is implemented.
 
 There are now several implementations of Processing such as the one used on this page using
 [Processing.js](http://processingjs.org/). The original one is still the easiest one to use
