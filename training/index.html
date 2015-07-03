@@ -1,0 +1,212 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Training Log</title>
+    <meta name="description" content="Training Dashboard">
+    <meta name="author" content="Jonathan Fokkan">
+
+    <!--<link rel="stylesheet" href="css/styles.css">-->
+    <link href="vendor/css/metricsgraphics.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="vendor/js/metricsgraphics.min.js" charset="utf-8"></script>
+
+    <script>
+     d3.json('data/bodyweight.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Bodyweight",
+         description: "Bodyweight line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('bodyweight'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y: 65,
+         yax_units:"kg",
+       });
+     });
+
+     d3.json('data/training_duration.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Training Duration",
+         description: "Training Duration line chart",
+         data: data,
+         //interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('duration'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data: true,
+         yax_units:"h",
+       });
+     });
+
+     d3.json('data/low_bar_squats_intensity.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Low bar squats intensity",
+         description: "low bar squats intensity line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('low_bar_squats_intensity'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+
+     d3.json('data/belted_low_bar_squats_intensity.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Belted low bar squats intensity",
+         description: "Belted low bar squats intensity line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('belted_low_bar_squats_intensity'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+     d3.json('data/squats_tonnage.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Squats Tonnage",
+         description: "Squats Tonnage line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('squats_tonnage'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+     d3.json('data/bench_intensity.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Bench Press Intensity",
+         description: "Bench Press Intensity line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('bench_intensity'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+     d3.json('data/bench_tonnage.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Bench Press Tonnage",
+         description: "Bench Press Tonnage line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('bench_tonnage'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+     d3.json('data/deadlift_intensity.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Deadlift Intensity",
+         description: "Deadlift Intensity line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('deadlift_intensity'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+
+     d3.json('data/deadlift_tonnage.json', function(data) {
+       data = MG.convert.date(data, 'date');
+       MG.data_graphic({
+         title: "Deadlift Tonnage",
+         description: "Deadlift Tonnage line chart",
+         data: data,
+         interpolate: 'basic',
+         width: 900,
+         height: 300,
+         right: 40,
+         target: document.getElementById('deadlift_tonnage'),
+         x_accessor: 'date',
+         y_accessor: 'value',
+         min_y_from_data:true,
+         yax_units:"lbs",
+       });
+     });
+    </script>
+
+    <div id="bodyweight">
+    </div>
+
+    <div id="duration">
+    </div>
+
+    <div id="low_bar_squats_intensity">
+    </div>
+
+    <div id="belted_low_bar_squats_intensity">
+    </div>
+
+    <div id="squats_tonnage">
+    </div>
+
+    <div id="bench_intensity">
+    </div>
+
+    <div id="bench_tonnage">
+    </div>
+
+    <div id="deadlift_intensity">
+    </div>
+
+    <div id="deadlift_tonnage">
+    </div>
+
+  </body>
+</html>
