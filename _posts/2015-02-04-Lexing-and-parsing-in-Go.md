@@ -12,7 +12,7 @@ and elegance of making a traditionally not concurrent problem into a concurrent 
 motivated me to try out making a lexer for a yet undefined language of my own design. But first as I
 did in my implementation, let start with the lexer.
 
-##Lexical Analysis
+## Lexical Analysis
 My quest started simply with a lexer. The idea behind the lexer is actually quite simple. The lexer
 has a goroutine that runs the lexer and another that collects the tokens sent by the lexer. This setup
 allows the lexer to be run in a very simple manner. Instead of having mutually recursive functions,
@@ -53,7 +53,7 @@ func Lex(name, input string) *Lexer {
 In the other goroutine, users of the lexer can make calls to NextItem() which returns the next
 Token in the channel.
 
-##Tokens
+## Tokens
 At this point, you would be right to wonder what exactly are we lexing, since we cannot lex tokens
 we don't know. I started with the code from the
 [text/template/parse package](http://golang.org/src/text/template/parse/lex.go)

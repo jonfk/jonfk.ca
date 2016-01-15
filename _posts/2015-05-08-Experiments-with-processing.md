@@ -13,7 +13,7 @@ There are now several implementations of Processing such as the one used on this
 [Processing.js](http://processingjs.org/). The original one is still the easiest one to use
 in my opinion but I haven't given a try to the others very thoroughly.
 
-##The context
+## The context
 
 I am moving to a new apartment soon and in the process of buying new furniture I have to map out the dimensions
 of my apartment. I could do a simple paper sketch or simply draw the map in a paint program but my inner geek
@@ -27,7 +27,7 @@ It even has 3D visualizations!
 
 Without much more ado here is the map of my apartment.
 
-##The Map:
+## The Map:
 <script src="/js/processing.js"></script>
 <script type="text/processing" data-processing-target="mycanvas">
 PFont f;

@@ -4,18 +4,18 @@ title: A simple protocol for a TCP chat server and client
 tags: learning golang tcp networking example tutorial
 ---
 
-##Introduction
+## Introduction
 I will be talking about some motivating factors for why you would want to use a
 lower level networking protocol such as TCP and how you could implement your own
 application protocol over it.
 
 
-###Some prerequisites
+### Some prerequisites
 - a general understanding of networking
 - a Go distribution
 
 
-##Motivation
+## Motivation
 Dealing with an HTTP API such as a RESTful web API is often the easier way to
 interact with your server. Applications that only need to consume and send
 commands to the server asynchronously can fit this use case. But some applications such
@@ -30,7 +30,7 @@ has some very leaky abstractions nad understanding the layer underneath is alway
 outages, latency and any properties you would like to have.
 
 
-##How can we use tcp
+## How can we use tcp
 Now that we know what we can use to have a continuous stream of data to communicate between 2 endpoints,
 how can we actually used that stream of bytes? We first need a way to interpret that stream of bytes so
 that we can read the messages passed on there.
@@ -41,7 +41,7 @@ There are several ways to do it:
 - Something else(let's come back to this)
 
 
-###The pros and Cons
+### The pros and Cons
 Pros of using a set number of bytes:
 - Size of buffer to allocate for the message does not change and is known in advance
 - Data in the message can be arbitrary and does not need to be escaped
@@ -57,7 +57,7 @@ Pros of using sentinel values
 Cons of using sentinel values
 - We cannot use the sentinel values in our data. We need to carefully escape the data to be sent.
 
-##Is there a better option?
+## Is there a better option?
 Glad you asked.
 
 We could define a protocol that specifies how much data to be sent by using the set number of bytes
@@ -72,7 +72,7 @@ This negates the wastefulness of the fixed number of bytes scheme, but it still 
 protocol without breaking backwards compatibility. For example, in our simple example protocol, we can send
 a maximum of 4GB in our messages. (4 bytes = 4*8 = 32 bits; 2^32-1 = 4294967295 bytes = 4.29497 GB)
 
-##Lets use this to implement a simple chat server and client
+## Lets use this to implement a simple chat server and client
 Using this scheme we can wrap the `net.Conn` `Read` method in a helper function as follows:
 
 ```go
@@ -246,7 +246,7 @@ thread of execution we listen for input on stdin and write messages to the conne
 
 And Voila. We have a client chatting with our server.
 
-##Concluding remarks
+## Concluding remarks
 You will probably notice we are not handling the errors and simply exit on failure on any errors in this
 example. Don't do that in your code. I just wanted to keep my example simple here. In an actual program,
 we would return err in the function that has one and the top-level would handle them.
