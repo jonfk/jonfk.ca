@@ -3,3 +3,6 @@ highlighter: pygments
 
 redcarpet:
   extensions: []
+
+gems:
+  - jekyll-sitemap
