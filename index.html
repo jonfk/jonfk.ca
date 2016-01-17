@@ -3,16 +3,20 @@ layout: default
 title: Scaling Simplicity
 ---
 <div class="home">
-  <h2>Posts</h2>
-  <ul class="posts">
-    {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
+  <section>
+    <h1>Posts</h1>
+    <ul class="posts">
+      {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
 
-  <h2>Projects</h2>
-  <ul class="posts">
-    <li><a href="https://github.com/jonfk/ssmu-powerlifting-play">SSMU Powerlifting website:</a> The club website of ssmu powerlifting club.</li>
-    <li><a href="https://github.com/jonfk/calc">Calc:</a>  A small calculator language and an experimentation lab to test language features ideas</li>
-  </ul>
+  <section>
+    <h1>Projects</h1>
+    <ul class="posts">
+      <li><a href="https://github.com/jonfk/ssmu-powerlifting-play">SSMU Powerlifting website:</a> The club website of ssmu powerlifting club.</li>
+      <li><a href="https://github.com/jonfk/calc">Calc:</a>  A small calculator language and an experimentation lab to test language features ideas</li>
+    </ul>
+  </section>
 </div>
