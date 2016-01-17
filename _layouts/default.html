@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<html>
 <head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <meta charset="UTF-8">
    <title>{{ page.title }}</title>
    <meta name="author" content="Jonathan Fok kan" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
@@ -13,27 +15,20 @@
 
 
 <div class="site">
-  <div class="title">
-    <a href="/">Scaling Simplicity</a>
+  <header>
+    <a href="/">Jonfk</a>
     <a class="extra" href="/">home</a>
     <a class="extra" href="/favorites.html">favorites</a>
-  </div>
+  </header>
 
+  <main>
   {{ content }}
+  </main>
 
-  <div class="footer">
-    <div class="contact">
-      <p>
-        Jonathan Fok kan<br />
-        jfokkan@gmail.com
-      </p>
-    </div>
-    <div class="contact">
-      <p>
-        <a href="http://github.com/jonfk/">github.com/jonfk</a><br />
-      </p>
-    </div>
-  </div>
+  <footer>
+    © 2016 Jonathan Fok kan.
+  </footer>
+
 </div>
 
 </body>
