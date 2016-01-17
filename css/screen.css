@@ -117,8 +117,8 @@ header {
 }
 
 .site header a:hover, .site nav a:hover {
-    color: black;
-}
+                          color: black;
+                      }
 
 .site nav a.extra {
     color: #aaa;
@@ -131,8 +131,8 @@ header {
 }
 
 .site header a.extra:hover, .site nav a.extra:hover {
-    color: black;
-}
+                                color: black;
+                            }
 
 nav {
     margin-bottom: 2em;
