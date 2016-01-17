@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 100%;
 }
 
-h1 {
+header {
     margin-bottom: 1em;
 }
 
@@ -71,7 +71,8 @@ ul.posts li {
     line-height: 1.75em;
 }
 
-ul.posts span {
+ul.posts span,
+#post header span { /* For posts header spans too */
     color: #aaa;
     font-family: "Ubuntu Mono", "Courier New", monospace;
     font-size: 100%;
@@ -103,11 +104,11 @@ ul.posts span {
     }
 }
 
-header {
+.site header[role="banner"] {
     font-family: 'Alegreya SC', serif;
     color: #a00;
     font-weight: 700;
-    font-size: 3em;
+    font-size: 3.5em;
     margin-bottom: 0.2em;
 }
 
@@ -181,8 +182,13 @@ nav li {
  *                                                                          *
  ****************************************************************************/
 
-#post {
+#post header {
+    font-family: 'Alegreya SC', serif;
+}
 
+#post header h1 {
+    font-weight: 700;
+    font-size: 1.5em;
 }
 
 #post pre {
