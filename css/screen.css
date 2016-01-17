@@ -16,7 +16,9 @@ html, body {
 
 body {
     background-color: white;
-    font: 13.34px helvetica, arial, clean, sans-serif;
+    /* font: 13.34px helvetica, arial, sans-serif; */
+    font-size: 13.34px;
+    font-family: 'PT Sans', arial, sans-serif;
     *font-size: small;
     text-align: center;
 }
@@ -50,6 +52,10 @@ table {
     font: 100%;
 }
 
+code, kbd, samp {
+    font-family: "Ubuntu Mono", monospace;
+}
+
 /****************************************************************************
  *                                                                          *
  * Home                                                                     *
@@ -67,8 +73,8 @@ ul.posts li {
 
 ul.posts span {
     color: #aaa;
-    font-family: Monaco, "Courier New", monospace;
-    font-size: 80%;
+    font-family: "Ubuntu Mono", "Courier New", monospace;
+    font-size: 100%;
 }
 
 /****************************************************************************
@@ -98,29 +104,44 @@ ul.posts span {
 }
 
 header {
+    font-family: 'Alegreya SC', serif;
     color: #a00;
-    font-weight: bold;
-    margin-bottom: 2em;
+    font-weight: 700;
+    font-size: 3em;
+    margin-bottom: 0.2em;
 }
 
-.site header a {
+.site header a, .site nav a {
     color: #a00;
     text-decoration: none;
 }
 
-.site header a:hover {
+.site header a:hover, .site nav a:hover {
     color: black;
 }
 
-.site header a.extra {
+.site nav a.extra {
     color: #aaa;
     text-decoration: none;
     margin-left: 1em;
 }
 
-.site header a.extra:hover {
+.site nav a.first {
+    margin-left: 0;
+}
+
+.site header a.extra:hover, .site nav a.extra:hover {
     color: black;
 }
+
+nav {
+    margin-bottom: 2em;
+}
+
+nav li {
+    display: inline;
+}
+
 
 .site .meta {
     color: #aaa;
@@ -132,6 +153,7 @@ header {
     border-top: 4px solid #eee;
     margin-top: 2em;
     overflow: hidden;
+    padding-top: 1em;
 }
 
 .site footer .contact {
