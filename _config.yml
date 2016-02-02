@@ -3,11 +3,11 @@ title: "Jonfk's Blog"
 author: Jonathan Fok kan
 description: "Where I blog about things"
 
-markdown: redcarpet
-highlighter: pygments
+markdown: kramdown
+highlighter: rouge
 
-redcarpet:
-  extensions: []
+kramdown:
+  input: GFM
 
 gems:
   - jekyll-sitemap
