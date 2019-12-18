@@ -2,6 +2,8 @@ import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
 
+import "./header.css";
+
 const Header = ({ siteTitle }) => (
   <header
     style={{
@@ -16,7 +18,7 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
+      <h1 style={{ margin: 0, marginBottom: `0.5em` }}>
         <Link
           to="/"
           style={{
@@ -30,6 +32,25 @@ const Header = ({ siteTitle }) => (
           {siteTitle.toUpperCase()}
         </Link>
       </h1>
+      <nav
+        style={{
+          fontFamily: `'PT Sans', Helvetica, arial, sans-serif`,
+        }}
+      >
+        <ul>
+          <li>
+            <Link style={{ marginLeft: 0 }} to="/home">
+              home
+            </Link>
+          </li>
+          <li>
+            <Link to="/favorites">favorites</Link>
+          </li>
+          <li>
+            <Link to="/about">about</Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 );

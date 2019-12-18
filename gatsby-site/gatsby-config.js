@@ -35,7 +35,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Alegreya SC"],
+          families: ["Alegreya SC", "PT Sans"],
         },
       },
     },
