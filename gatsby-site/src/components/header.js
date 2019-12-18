@@ -5,7 +5,7 @@ import React from "react";
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      background: `white`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -20,11 +20,14 @@ const Header = ({ siteTitle }) => (
         <Link
           to="/"
           style={{
-            color: `white`,
+            color: `#a00`,
             textDecoration: `none`,
+            fontFamily: `'Alegreya SC', serif`,
+            fontWeight: 700,
+            fontSize: `1.5em`,
           }}
         >
-          {siteTitle}
+          {siteTitle.toUpperCase()}
         </Link>
       </h1>
     </div>
