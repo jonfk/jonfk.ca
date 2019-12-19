@@ -24,8 +24,7 @@ module.exports = {
         background_color: `#a00`,
         theme_color: `#a00`,
         display: `minimal-ui`,
-        // TODO update with favicons check https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
