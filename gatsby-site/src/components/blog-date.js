@@ -13,4 +13,9 @@ const BlogPostDate = ({ postDate, postPrettyDate }) => (
   </time>
 );
 
+BlogPostDate.protoTypes = {
+    postDate: PropTypes.string.isRequired,
+    postPrettyDate: PropTypes.string.isRequired,
+};
+
 export default BlogPostDate;
