@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Experiments with Processing
 tags: learning markup art drawing language
+date: 2015-05-08
 ---
 
 Processing is a programming language targeted at electronic arts and visual design communities.

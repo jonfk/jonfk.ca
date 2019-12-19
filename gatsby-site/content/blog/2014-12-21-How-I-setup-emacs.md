@@ -1,7 +1,7 @@
 ---
-layout: post
 title: How I setup my emacs config
 tags: emacs configurations productivity editors
+date: 2014-12-21
 ---
 
 *Last Edited 04 Feb 2015*

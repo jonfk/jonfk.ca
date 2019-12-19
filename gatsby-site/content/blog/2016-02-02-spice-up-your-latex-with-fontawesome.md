@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Spice up your LaTeX with Font Awesome
 tags: latex documents
+date: 2016-02-02
 ---
 
 LaTeX allows you to create amazing documents which are beautifully typeset. It gives you access to a wide breath of tools and graphics to improve your documents. One of these are the many already available symbols in LaTeX. Here is a comprehensive list of available symbols: [Link](http://www.ctan.org/tex-archive/info/symbols/comprehensive/) [PDF](http://mirrors.ctan.org/info/symbols/comprehensive/symbols-a4.pdf). You can even find symbols by drawing them at this [service](http://detexify.kirelabs.org/classify.html). These include mathematical symbols, phonetic symbols, currency symbols or symbols for various languages.

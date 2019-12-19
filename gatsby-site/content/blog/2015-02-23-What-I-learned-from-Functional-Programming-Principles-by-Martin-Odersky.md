@@ -1,7 +1,7 @@
 ---
-layout: post
 title: What I learned from Functional Programming Principles
 tags: learning language functional programming scala coursera
+date: 2015-02-23
 ---
 
 Functional Programming Principles is a course taught at Ecole polytechnique fédérale de lausanne and

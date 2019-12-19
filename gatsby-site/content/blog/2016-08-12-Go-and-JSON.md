@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Go and JSON, various useful libraries and utilities
 tags: go golang json libraries code
+date: 2016-08-12
 ---
 
 JSON is probably one of the most popular data interchange format on the web. Go
