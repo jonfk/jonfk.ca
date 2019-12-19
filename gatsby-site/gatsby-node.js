@@ -9,14 +9,15 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.js`);
   const result = await graphql(
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }, filter: {fields: {pageType: {eq: "blog"}}}
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: { fields: { pageType: { eq: "blog" } } }
         ) {
           edges {
             node {
@@ -28,14 +29,14 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     `
-  )
+  );
 
   if (result.errors) {
-    throw result.errors
+    throw result.errors;
   }
 
   // Create blog posts pages.
-  const posts = result.data.allMarkdownRemark.edges
+  const posts = result.data.allMarkdownRemark.edges;
 
   posts.forEach((post, index) => {
     createPage({
@@ -44,26 +45,26 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: post.node.fields.slug,
       },
-    })
-  })
-}
+    });
+  });
+};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-    const { createNodeField } = actions;
+  const { createNodeField } = actions;
 
-    if (node.internal.type === `MarkdownRemark` && getNode(node.parent).sourceInstanceName === `blog`) {
-        let fileNode = getNode(node.parent);
+  if (node.internal.type === `MarkdownRemark` && getNode(node.parent).sourceInstanceName === `blog`) {
+    let fileNode = getNode(node.parent);
 
-        let {slug, date} = blog.createPageSlug(fileNode.relativePath);
-        createNodeField({
-            node,
-            name: `pageType`,
-            value: `blog`,
-        })
-        createNodeField({
-            node,
-            name: `slug`,
-            value: slug,
-        })
-    }
-}
+    let { slug, date } = blog.createPageSlug(fileNode.relativePath);
+    createNodeField({
+      node,
+      name: `pageType`,
+      value: `blog`,
+    });
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    });
+  }
+};
