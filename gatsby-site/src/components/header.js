@@ -39,7 +39,7 @@ const Header = ({ siteTitle }) => (
       >
         <ul>
           <li>
-            <Link style={{ marginLeft: 0 }} to="/home">
+            <Link style={{ marginLeft: 0 }} to="/">
               home
             </Link>
           </li>
