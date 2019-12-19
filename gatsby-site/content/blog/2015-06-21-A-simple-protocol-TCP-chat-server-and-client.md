@@ -1,7 +1,7 @@
 ---
-layout: post
 title: A simple protocol for a TCP chat server and client
 tags: learning golang tcp networking example tutorial
+date: 2015-06-21
 ---
 
 ## Introduction

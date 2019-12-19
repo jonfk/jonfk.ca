@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Lexing and parsing in Go (Part 1)
 tags: learning golang go compiler language
+date: 2015-02-04
 ---
 
 *Note: all the code can be seen at [github.com/jonfk/calc](https://github.com/jonfk/calc)*

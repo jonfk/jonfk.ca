@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Some notes on bash scripting
 tags: learning script scripting bash shell language
+date: 2015-02-20
 ---
 
 In your day to day tasks you often encounter tasks that can be easily automated. Instead

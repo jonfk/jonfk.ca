@@ -1,7 +1,7 @@
 ---
-layout: post
 title: Moving from markdown to asciidoc
 tags: learning markup documentation writing
+date: 2015-04-11
 ---
 
 Markdown is probably the most popular markup language in the tech community. Often used in
