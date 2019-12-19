@@ -33,7 +33,7 @@ const BlogPostList = () => {
       <ul
         style={{
           listStyleType: `none`,
-            marginLeft: 0,
+          marginLeft: 0,
         }}
       >
         {posts.map(({ node }) => (
