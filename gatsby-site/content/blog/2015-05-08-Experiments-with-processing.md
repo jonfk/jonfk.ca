@@ -28,6 +28,7 @@ It even has 3D visualizations!
 Without much more ado here is the map of my apartment.
 
 ## The Map:
+
 <script src="/js/processing.js"></script>
 <script type="text/processing" data-processing-target="mycanvas">
 PFont f;
@@ -95,4 +96,5 @@ void draw() {
   rect(835,180, 4,150);
 }
 </script>
+
 <canvas id="mycanvas"></canvas>

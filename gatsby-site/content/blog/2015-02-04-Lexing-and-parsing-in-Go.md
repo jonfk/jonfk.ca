@@ -4,7 +4,7 @@ tags: learning golang go compiler language
 date: 2015-02-04
 ---
 
-*Note: all the code can be seen at [github.com/jonfk/calc](https://github.com/jonfk/calc)*
+_Note: all the code can be seen at [github.com/jonfk/calc](https://github.com/jonfk/calc)_
 
 About a month ago, I watched a [video of Rob Pike](https://www.youtube.com/watch?v=HxaD_trXwRE)
 giving a talk about lexing for the text/template/parse package. In it he described the simplicity
@@ -13,6 +13,7 @@ motivated me to try out making a lexer for a yet undefined language of my own de
 did in my implementation, let start with the lexer.
 
 ## Lexical Analysis
+
 My quest started simply with a lexer. The idea behind the lexer is actually quite simple. The lexer
 has a goroutine that runs the lexer and another that collects the tokens sent by the lexer. This setup
 allows the lexer to be run in a very simple manner. Instead of having mutually recursive functions,
@@ -54,6 +55,7 @@ In the other goroutine, users of the lexer can make calls to NextItem() which re
 Token in the channel.
 
 ## Tokens
+
 At this point, you would be right to wonder what exactly are we lexing, since we cannot lex tokens
 we don't know. I started with the code from the
 [text/template/parse package](http://golang.org/src/text/template/parse/lex.go)

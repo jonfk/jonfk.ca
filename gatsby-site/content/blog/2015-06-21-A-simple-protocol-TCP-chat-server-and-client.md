@@ -5,17 +5,18 @@ date: 2015-06-21
 ---
 
 ## Introduction
+
 I will be talking about some motivating factors for why you would want to use a
 lower level networking protocol such as TCP and how you could implement your own
 application protocol over it.
 
-
 ### Some prerequisites
+
 - a general understanding of networking
 - a Go distribution
 
-
 ## Motivation
+
 Dealing with an HTTP API such as a RESTful web API is often the easier way to
 interact with your server. Applications that only need to consume and send
 commands to the server asynchronously can fit this use case. But some applications such
@@ -29,35 +30,41 @@ of TCP and UDP are beyond the scope of this post, but I encourage you to do some
 has some very leaky abstractions nad understanding the layer underneath is always useful in debugging issues such as
 outages, latency and any properties you would like to have.
 
-
 ## How can we use tcp
+
 Now that we know what we can use to have a continuous stream of data to communicate between 2 endpoints,
 how can we actually used that stream of bytes? We first need a way to interpret that stream of bytes so
 that we can read the messages passed on there.
 
 There are several ways to do it:
+
 - We could use a set number of bytes
 - We could use sentinel values to mark the beginning and/or end of a message
 - Something else(let's come back to this)
 
-
 ### The pros and Cons
+
 Pros of using a set number of bytes:
+
 - Size of buffer to allocate for the message does not change and is known in advance
 - Data in the message can be arbitrary and does not need to be escaped
 
 Cons of using a set number of bytes:
+
 - Can be wasteful. What if we need to send 8 bytes but we are using 1024 byte buffers
 - Hard to extend. Once we declare the protocol we cannot change the number of bytes in messages
 
 Pros of using sentinel values
+
 - Easy to implement. Read until we see the sentinel value.
 - Flexible in how much data we can send.
 
 Cons of using sentinel values
+
 - We cannot use the sentinel values in our data. We need to carefully escape the data to be sent.
 
 ## Is there a better option?
+
 Glad you asked.
 
 We could define a protocol that specifies how much data to be sent by using the set number of bytes
@@ -70,9 +77,10 @@ size and read until we receive all the bytes promised in the header.
 
 This negates the wastefulness of the fixed number of bytes scheme, but it still makes it hard to extend this
 protocol without breaking backwards compatibility. For example, in our simple example protocol, we can send
-a maximum of 4GB in our messages. (4 bytes = 4*8 = 32 bits; 2^32-1 = 4294967295 bytes = 4.29497 GB)
+a maximum of 4GB in our messages. (4 bytes = 4\*8 = 32 bits; 2^32-1 = 4294967295 bytes = 4.29497 GB)
 
 ## Lets use this to implement a simple chat server and client
+
 Using this scheme we can wrap the `net.Conn` `Read` method in a helper function as follows:
 
 ```go
@@ -114,7 +122,7 @@ func ReadMsg(conn net.Conn) (string, error) {
 What this does is read 4bytes from the specified connection and converts those bytes to an int. It then reads
 from the connection until it has seen as many bytes from the connection as was promised in the header. The `FromBytes` function
 takes care of converting the bytes to the int. In our protocol, the int are encoded in binary in Big Endian as is common
-in most networking protocol which is why big endian is also known as *The Network Byte Order*. Here is the helper functions to
+in most networking protocol which is why big endian is also known as _The Network Byte Order_. Here is the helper functions to
 convert ints to and from bytes:
 
 ```go
@@ -243,10 +251,10 @@ We first connect to the server and the same port our server is listening to and 
 to print all messages we receive from the connection, if the connection is closed we exit. On another
 thread of execution we listen for input on stdin and write messages to the connection.
 
-
 And Voila. We have a client chatting with our server.
 
 ## Concluding remarks
+
 You will probably notice we are not handling the errors and simply exit on failure on any errors in this
 example. Don't do that in your code. I just wanted to keep my example simple here. In an actual program,
 we would return err in the function that has one and the top-level would handle them.

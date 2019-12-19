@@ -14,7 +14,6 @@ library and reading how it works ([blog](https://blog.golang.org/json-and-go),
 JSON in Go and explain what differentiates them from "encoding/json"
 and each other.
 
-
 First, why would we want to use anything other than `"encoding/json"`? Well to
 provide flexibility and simplicity in its usage, `"encoding/json"` makes use
 of reflection on the structs that defines the structure of the JSON you are
@@ -114,12 +113,14 @@ data serializers.
 ## Utilities and other helpful libraries
 
 ### Convert JSON to a Go Struct
+
 Instead of doing this job by hand, here are some utilities that can help you:
 
 - Online: https://mholt.github.io/json-to-go/
 - Locally: https://github.com/ChimeraCoder/gojson
 
 ## Summary
+
 Useful JSON libraries:
 For generating encoders and decoders:
 

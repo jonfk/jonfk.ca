@@ -4,7 +4,7 @@ tags: emacs configurations productivity editors
 date: 2014-12-21
 ---
 
-*Last Edited 04 Feb 2015*
+_Last Edited 04 Feb 2015_
 
 First some background. I used vim for about 2 years. It was my first real editor back when I was a
 first year CompSci student. It was a hard road in the beginning, learning modal editing, the
@@ -22,6 +22,7 @@ So although the default editor that comes with emacs is not great, you can make 
 The following packages are what makes emacs a better editor for me.
 
 ## EVIL
+
 The most important piece of my emacs config is evil-mode. Evil brings modal editing to emacs and
 replicates many of vim's features. All the keybindings I was used to in vim are there. I don't claim
 to be the most advanced vim user out there. There are many who use vim's advanced features in
@@ -29,11 +30,13 @@ such a way that would prevent them from switching, but if your main reason to st
 editing, I urge you to give evil a try.
 
 ## package.el
+
 Another reason why I prefer emacs is that since emacs24, package.el comes on the default installation.
 This means that I can bootstrap my emacs from it's config file and have my customized environment in
 a matter of seconds.
 
 ## Evil Leader
+
 Although not as essential as it's namesake mode, evil-leader is useful to prevent rsi and map many
 of emacs obscure keybindings to a simple 2 keypress. For example I map my leader to the `,` key and
 `kill-buffer` is mapped to k, so to kill the current buffer I do `,-k`
