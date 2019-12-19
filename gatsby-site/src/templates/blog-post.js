@@ -2,6 +2,7 @@ import React from "react";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import BlogPostDate from "../components/blog-date";
 
 const BlogPostTemplate = ({ data }) => {
   let post = data.markdownRemark;
@@ -19,14 +20,7 @@ const BlogPostTemplate = ({ data }) => {
           >
             {title}
           </h2>
-          <span
-            style={{
-              color: `#aaa`,
-              fontFamily: `monospace`,
-            }}
-          >
-            <time datetime={post.frontmatter.date}>{post.frontmatter.prettyDate}</time>
-          </span>
+          <BlogPostDate postDate={post.frontmatter.date} postPrettyDate={post.frontmatter.prettyDate} />
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
       </article>

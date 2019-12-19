@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import BlogPostList from "../components/blog-post-list";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-);
+const IndexPage = () => {
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <BlogPostList />
+    </Layout>
+  );
+};
 
 export default IndexPage;
