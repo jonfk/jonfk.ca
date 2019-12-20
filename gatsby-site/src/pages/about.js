@@ -24,14 +24,14 @@ const AboutPage = () => {
           </a>
         </li>
         <li>
-            <a href="https://github.com/jonfk/resume/releases/download/latest/Jonathan_Fokkan_Resume.pdf">
-                <FontAwesomeIcon icon={faFilePdf} /> Resume
-            </a>
+          <a href="https://github.com/jonfk/resume/releases/download/latest/Jonathan_Fokkan_Resume.pdf">
+            <FontAwesomeIcon icon={faFilePdf} /> Resume
+          </a>
         </li>
         <li>
-            <a href="https://www.linkedin.com/in/jonfk">
-                <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
-            </a>
+          <a href="https://www.linkedin.com/in/jonfk">
+            <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+          </a>
         </li>
       </ul>
     </Layout>
