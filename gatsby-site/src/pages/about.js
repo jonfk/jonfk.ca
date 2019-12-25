@@ -24,7 +24,7 @@ const AboutPage = () => {
           </a>
         </li>
         <li>
-          <a href="https://github.com/jonfk/resume/releases/download/latest/Jonathan_Fokkan_Resume.pdf">
+          <a href="https://github.com/jonfk/resume/releases/latest/download/Jonathan_Fokkan_Resume.pdf">
             <FontAwesomeIcon icon={faFilePdf} /> Resume
           </a>
         </li>
