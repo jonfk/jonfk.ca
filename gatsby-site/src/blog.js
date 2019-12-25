@@ -8,7 +8,6 @@ exports.createPageSlug = function createPageSlug(filename) {
   let filenameWithoutExt = path.parse(filename).name;
   let dateStr = filenameWithoutExt.substring(0, 10);
   let date = parse(dateStr, DATE_FORMAT, new Date());
-  console.log(dateStr);
   if (isValid(date)) {
     let postName = filenameWithoutExt.substring(11);
     return {
