@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useStaticQuery } from "gatsby";
 
-import BlogPostDate from "../components/blog-date";
+import BlogPostDate from "./blog-date";
 
 const BlogPostList = () => {
   const data = useStaticQuery(graphql`
