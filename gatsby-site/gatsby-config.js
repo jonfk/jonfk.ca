@@ -54,5 +54,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-yaml`,
+    // Useful since netlify works better without cachebusting urls
+    `gatsby-plugin-remove-fingerprints`,
   ],
 };

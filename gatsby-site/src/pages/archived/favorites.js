@@ -70,64 +70,69 @@ const FavoritesPage = () => {
 
       <h3>Strength & Conditioning</h3>
       <ul
-          style={{
-              listStyleType: `none`,
-              marginLeft: 0,
-          }}
+        style={{
+          listStyleType: `none`,
+          marginLeft: 0,
+        }}
       >
-          {favorites.strengthAndConditioning.map(({ date, prettyDate, name, url }) => (
-              <li>
-                  <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
-                  {` » `}
-                  <a href={url}>{name}</a>
-              </li>
-          ))}
+        {favorites.strengthAndConditioning.map(({ date, prettyDate, name, url }) => (
+          <li>
+            <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
+            {` » `}
+            <a href={url}>{name}</a>
+          </li>
+        ))}
       </ul>
 
       <h3>Humor</h3>
       <ul
-          style={{
-              listStyleType: `none`,
-              marginLeft: 0,
-          }}
+        style={{
+          listStyleType: `none`,
+          marginLeft: 0,
+        }}
       >
-          {favorites.humor.map(({ date, prettyDate, name, url }) => (
-              <li>
-                  <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
-                  {` » `}
-                  <a href={url}>{name}</a>
-              </li>
-          ))}
+        {favorites.humor.map(({ date, prettyDate, name, url }) => (
+          <li>
+            <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
+            {` » `}
+            <a href={url}>{name}</a>
+          </li>
+        ))}
       </ul>
 
       <h3>Life</h3>
       <ul
-          style={{
-              listStyleType: `none`,
-              marginLeft: 0,
-          }}
+        style={{
+          listStyleType: `none`,
+          marginLeft: 0,
+        }}
       >
-          {favorites.life.map(({ date, prettyDate, name, url, urls }) => {
-              if (url) {
-                  return <li>
-                      <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
-                      {` » `}
-                      <a href={url}>{name}</a>
-                  </li>;
-              } else {
-                  return <li>
-                      <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
-                      {` » `}
-                      <a href={url}>{name}</a>
-                      {` `}
-                      {urls.map((url, i) => <>
-                          <a href={url}>{i+1}</a>
-                          {` `}
+        {favorites.life.map(({ date, prettyDate, name, url, urls }) => {
+          if (url) {
+            return (
+              <li>
+                <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
+                {` » `}
+                <a href={url}>{name}</a>
+              </li>
+            );
+          } else {
+            return (
+              <li>
+                <BlogPostDate postDate={date} postPrettyDate={prettyDate} />
+                {` » `}
+                <a href={url}>{name}</a>
+                {` `}
+                {urls.map((url, i) => (
+                  <>
+                    <a href={url}>{i + 1}</a>
+                    {` `}
                   </>
-                      )}
-                  </li>;
-              }
-          })}
+                ))}
+              </li>
+            );
+          }
+        })}
       </ul>
     </Layout>
   );
