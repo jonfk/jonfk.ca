@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
@@ -24,9 +25,9 @@ const AboutPage = () => {
           </a>
         </li>
         <li>
-          <a href="https://github.com/jonfk/resume/releases/latest/download/Jonathan_Fokkan_Resume.pdf">
+          <Link to="/resume.pdf">
             <FontAwesomeIcon icon={faFilePdf} /> Resume
-          </a>
+          </Link>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/jonfk">
