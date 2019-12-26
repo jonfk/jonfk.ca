@@ -10,6 +10,6 @@ I found out recently that you can include [Font Awesome](http://fontawesome.io/)
 
 The final result:
 
-<a href="/img/2016-02-02/resume-screenshot.png"><img src="/img/2016-02-02/resume-screenshot.png" width="600" alt="My Resume with fontawesome icons"></a>
+![My Resume with fontawesome icons](../images/2016-02-02/resume-screenshot.png)
 
 You can checkout the source here: [Link](https://github.com/jonfk/resume)
