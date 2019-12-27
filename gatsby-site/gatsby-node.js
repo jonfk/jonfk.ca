@@ -25,6 +25,9 @@ exports.createPages = async ({ graphql, actions }) => {
                 slug
                 pagePath
               }
+              frontmatter {
+                date
+              }
             }
           }
         }
@@ -45,6 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
+        date: post.node.frontmatter.date,
       },
     });
   });
