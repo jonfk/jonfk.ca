@@ -7,7 +7,7 @@ const BlogPostDate = ({ postDate, postPrettyDate }) => (
       color: `#aaa`,
       fontFamily: [`Ubuntu Mono`, `monospace`],
     }}
-    datetime={postDate}
+    dateTime={postDate}
   >
     {postPrettyDate}
   </time>

@@ -21,7 +21,7 @@ const WilksPage = () => {
       <div id="wilks-app"></div>
 
       <Helmet>
-        <script src="/wilks-elm-app.js"></script>
+        <script id="wilks-elm-app" src="/wilks-elm-app.js"></script>
       </Helmet>
     </Layout>
   );

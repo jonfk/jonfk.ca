@@ -71,7 +71,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-            families: ["Alegreya SC", "PT Sans", "Montserrat", "Ubuntu Mono"],
+          families: ["Alegreya SC", "PT Sans", "Montserrat", "Ubuntu Mono"],
         },
       },
     },
