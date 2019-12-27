@@ -1,3 +1,5 @@
+const sitemap = require("./src/utils/sitemap.js");
+
 module.exports = {
   siteMetadata: {
     siteUrl: `https://www.jonfk.ca`,
@@ -85,6 +87,9 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: sitemap.options,
+    },
   ],
 };
