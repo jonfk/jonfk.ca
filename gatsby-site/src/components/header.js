@@ -8,7 +8,7 @@ const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `white`,
-      marginBottom: `1.45rem`,
+      marginBottom: `1.0rem`,
     }}
   >
     <div
@@ -25,8 +25,8 @@ const Header = ({ siteTitle }) => (
             color: `#a00`,
             textDecoration: `none`,
             fontFamily: `'Alegreya SC', serif`,
-            fontWeight: 700,
-            fontSize: `1.5em`,
+            fontWeight: 800,
+            fontSize: `1.75em`,
           }}
         >
           {siteTitle.toUpperCase()}
@@ -37,11 +37,11 @@ const Header = ({ siteTitle }) => (
           fontFamily: `'PT Sans', Helvetica, arial, sans-serif`,
         }}
       >
-          <ul
-              style={{
-                  marginBottom: 0,
-              }}
-          >
+        <ul
+          style={{
+            marginBottom: 0,
+          }}
+        >
           <li>
             <Link style={{ marginLeft: 0 }} to="/">
               home
