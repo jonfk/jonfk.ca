@@ -28,9 +28,9 @@ It even has 3D visualizations!
 Without much more ado here is the map of my apartment.
 
 ## The Map:
+<iframe width="100%" height="950" src="//jsfiddle.net/hj27ku6c/embedded/result/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-<script src="/js/processing.js"></script>
-<script type="text/processing" data-processing-target="mycanvas">
+```processing
 PFont f;
 
 void setup() {
@@ -95,6 +95,4 @@ void draw() {
   // window
   rect(835,180, 4,150);
 }
-</script>
-
-<canvas id="mycanvas"></canvas>
+```
