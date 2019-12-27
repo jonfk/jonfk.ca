@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://www.jonfk.ca`,
     title: `jonfk`,
     description: ``,
     author: `Jonathan Fok kan`,
@@ -84,5 +85,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    `gatsby-plugin-sitemap`,
   ],
 };
