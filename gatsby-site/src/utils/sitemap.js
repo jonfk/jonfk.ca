@@ -19,11 +19,20 @@ const serialize = ({ site, allSitePage }) => {
     let page = {
       url: site.siteMetadata.siteUrl + edge.node.path,
     };
+    if (egde.node.path.startsWith("/blog/")) {
+      page.priority = 0.7;
+    } else {
+      page.priority = 0.9;
+    }
     return page;
   });
   pages.push({
     url: site.siteMetadata.siteUrl + "/resume.pdf",
-    priority: 0.9,
+    priority: 1.0,
+  });
+  pages.push({
+    url: site.siteMetadata.siteUrl + "/archived/2015-07-03/training",
+    priority: 0.2,
   });
   return pages;
 };
