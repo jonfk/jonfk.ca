@@ -37,14 +37,15 @@ const Header = ({ siteTitle }) => (
           fontFamily: `'PT Sans', Helvetica, arial, sans-serif`,
         }}
       >
-        <ul>
+          <ul
+              style={{
+                  marginBottom: 0,
+              }}
+          >
           <li>
             <Link style={{ marginLeft: 0 }} to="/">
               home
             </Link>
-          </li>
-          <li>
-            <Link to="/favorites">favorites</Link>
           </li>
           <li>
             <Link to="/about">about</Link>
