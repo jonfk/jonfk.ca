@@ -71,12 +71,18 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Alegreya SC", "PT Sans"],
+            families: ["Alegreya SC", "PT Sans", "Montserrat", "Ubuntu Mono"],
         },
       },
     },
     `gatsby-transformer-yaml`,
     // Useful since netlify works better without cachebusting urls
     `gatsby-plugin-remove-fingerprints`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
   ],
 };

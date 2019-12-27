@@ -5,7 +5,7 @@ const BlogPostDate = ({ postDate, postPrettyDate }) => (
   <time
     style={{
       color: `#aaa`,
-      fontFamily: `monospace`,
+      fontFamily: [`Ubuntu Mono`, `monospace`],
     }}
     datetime={postDate}
   >
