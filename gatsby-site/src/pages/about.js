@@ -25,9 +25,9 @@ const AboutPage = () => {
           </a>
         </li>
         <li>
-          <Link to="/resume.pdf">
+          <a href="/resume.pdf">
             <FontAwesomeIcon icon={faFilePdf} /> Resume
-          </Link>
+          </a>
         </li>
         <li>
           <a href="https://www.linkedin.com/in/jonfk">
