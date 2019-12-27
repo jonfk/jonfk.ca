@@ -8,6 +8,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRss } from "@fortawesome/free-solid-svg-icons";
 
 import Header from "./header";
 import "./layout.css";
@@ -37,8 +39,24 @@ const Layout = ({ children }) => {
       >
         <main>{children}</main>
         <footer>
-          © {new Date().getFullYear()}
-          {` ` + data.site.siteMetadata.author}
+          <span
+            style={{
+              fontSize: `80%`,
+              color: `#666`,
+            }}
+          >
+            © {new Date().getFullYear()}
+            {` ` + data.site.siteMetadata.author}
+          </span>
+          <a
+            href="/rss.xml"
+            style={{
+              float: `right`,
+              fontSize: `130%`,
+            }}
+          >
+            <FontAwesomeIcon icon={faRss} />
+          </a>
         </footer>
       </div>
     </>

@@ -15,17 +15,17 @@ let query = `
           }
       }`;
 const serialize = ({ site, allSitePage }) => {
-    let pages = allSitePage.edges.map(edge => {
-        let page = {
-            url: site.siteMetadata.siteUrl + edge.node.path,
-        };
-        return page;
-    });
-    pages.push({
-        url: site.siteMetadata.siteUrl + '/resume.pdf',
-        priority: 0.9,
-    })
-    return pages;
+  let pages = allSitePage.edges.map(edge => {
+    let page = {
+      url: site.siteMetadata.siteUrl + edge.node.path,
+    };
+    return page;
+  });
+  pages.push({
+    url: site.siteMetadata.siteUrl + "/resume.pdf",
+    priority: 0.9,
+  });
+  return pages;
 };
 
 exports.options = {

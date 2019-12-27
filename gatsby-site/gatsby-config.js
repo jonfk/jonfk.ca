@@ -1,4 +1,5 @@
-const sitemap = require("./src/utils/sitemap.js");
+const sitemap = require("./src/utils/sitemap");
+const rssfeed = require("./src/utils/rssfeed");
 
 module.exports = {
   siteMetadata: {
@@ -91,5 +92,6 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: sitemap.options,
     },
+    { resolve: `gatsby-plugin-feed`, options: rssfeed.options },
   ],
 };
