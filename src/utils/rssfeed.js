@@ -44,5 +44,5 @@ exports.options = {
             }
           }
     `,
-  feeds: [{ query: blogpostsQuery, serialize: blogpostsSerialize, output: "/rss.xml" }],
+  feeds: [{ query: blogpostsQuery, serialize: blogpostsSerialize, output: "/rss.xml", title: "jonfk.ca"}],
 };

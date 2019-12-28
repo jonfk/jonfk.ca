@@ -19,7 +19,7 @@ const serialize = ({ site, allSitePage }) => {
     let page = {
       url: site.siteMetadata.siteUrl + edge.node.path,
     };
-    if (egde.node.path.startsWith("/blog/")) {
+    if (edge.node.path.startsWith("/blog/")) {
       page.priority = 0.7;
     } else {
       page.priority = 0.9;
