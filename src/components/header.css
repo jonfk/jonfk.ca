@@ -1,0 +1,20 @@
+
+header a:hover, nav a:hover {
+    color: black;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 1em;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+nav ul, nav li {
+    margin-left: 0;
+}
