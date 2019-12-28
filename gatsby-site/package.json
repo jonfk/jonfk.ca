@@ -1,10 +1,10 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "jonfk-ca-gatsby-site",
   "type": "module",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "jonfk.ca build with gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jonathan Fok kan <jfokkan@gmail.com>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-brands-svg-icons": "^5.12.0",
@@ -54,9 +54,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/jonfk"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/jonfk"
   }
 }
