@@ -93,5 +93,6 @@ module.exports = {
       options: sitemap.options,
     },
     { resolve: `gatsby-plugin-feed`, options: rssfeed.options },
+    `gatsby-plugin-netlify`,
   ],
 };
