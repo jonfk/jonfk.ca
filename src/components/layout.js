@@ -11,8 +11,14 @@ import { useStaticQuery, graphql } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 
+// https://stackoverflow.com/questions/56334381/why-my-font-awesome-icons-are-being-displayed-big-at-first-and-then-updated-to-t
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import Header from "./header";
 import "./layout.css";
+
+config.autoAddCss = false;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -55,7 +61,7 @@ const Layout = ({ children }) => {
               fontSize: `130%`,
             }}
           >
-            <FontAwesomeIcon icon={faRss} />
+            <FontAwesomeIcon icon={faRss} size="lg"/>
           </a>
         </footer>
       </div>
