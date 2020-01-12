@@ -1345,29 +1345,29 @@ of attacks called [Login CSRF](https://en.wikipedia.org/wiki/Cross-site_request_
 2. <span id="ietf-rfcs-list">[List of IETF OAuth 2.0 RFCs](https://tools.ietf.org/wg/oauth/)</span>
 3. <span id="oauth-net-links">[Links to various documents about OAuth 2.0](https://oauth.net/2/) from oauth.net</span> 
 4. <span id="oauth-security-best-practices">[The latest security best practices for OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-12)</span>
-4. <span id="oauth-2-simplified">[OAuth 2.0 Simplified](https://aaronparecki.com/oauth-2-simplified/) by Aaron Parecki</span>
-4. <span id="hydra-spring-authn">A previous Hydra integration I wrote with Spring and Java [Git Repo](https://github.com/jonfk/hydra-spring-authn-authz-example)</span>
-4. <span id="ory-access-authz-patterns">https://www.ory.sh/web-api-cloud-access-control-authentication/ Information about when you may want to use different types of access control (Access Tokens vs session cookies)</span>
-5. <span id="ory-rest-api-docs">Ory Hydra REST API docs</span>
-  1. [Ory Hydra REST API docs](https://www.ory.sh/docs/hydra/sdk/api)
-  2. [OryOS.14 Versioned Github link](https://github.com/ory/docs/blob/v0.0.30%2BoryOS.14/docs/hydra/sdk/api.md)
-6. <span id="openapi-generator">OpenAPI</span>
-  1. [OpenAPI Generator](https://openapi-generator.tech/)
-  2. [Github Link](https://github.com/OpenAPITools/openapi-generator)
-7. <span id="rust-send-sync">Rust Send and Sync Traits</span>
-  1. [Send std docs](https://doc.rust-lang.org/std/marker/trait.Send.html)
-  2. [Send and Sync from the Rustonomicon](https://doc.rust-lang.org/nomicon/send-and-sync.html)
-8. <span id="rust-trait-objects">Rust Trait Objects</span>
-  1. [Generic Data Types](https://doc.rust-lang.org/book/ch10-01-syntax.html)
-  2. [Trait Objects](https://doc.rust-lang.org/1.30.0/book/2018-edition/ch17-02-trait-objects.html)
-9. <span id="rust-testing">Rust Testing</span>
-  1. [Writing Automated Tests from the Rust Book](https://doc.rust-lang.org/book/ch11-00-testing.html)
-  2. [Testing from Rust By Example](https://doc.rust-lang.org/rust-by-example/testing.html)
-10. <span id="oauth2-introspection">OAuth 2.0 Token Introspection Extension</span> 
-  1. [OAuth2 Token Introspection Endpoint from oauth.com](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/)
-  2. [RFC 7662: OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662) 
-  3. [Ory Hydra Introspection docs](https://www.ory.sh/docs/hydra/sdk/api#introspect-oauth2-tokens)
-11. <span id="rust-async-tokio-blocking">Async Rust: Tokio Blocking</span>
-  1. [tokio::task](https://docs.rs/tokio/0.2.9/tokio/task/index.html)
-  2. [tokio::task::block_in_place](https://docs.rs/tokio/0.2.9/tokio/task/fn.block_in_place.html)
-  3. [tokio::task::spawn_blocking](https://docs.rs/tokio/0.2.9/tokio/task/fn.spawn_blocking.html)
+5. <span id="oauth-2-simplified">[OAuth 2.0 Simplified](https://aaronparecki.com/oauth-2-simplified/) by Aaron Parecki</span>
+6. <span id="hydra-spring-authn">A previous Hydra integration I wrote with Spring and Java [Git Repo](https://github.com/jonfk/hydra-spring-authn-authz-example)</span>
+7. <span id="ory-access-authz-patterns">[Information about when you may want to use different types of access control (Access Tokens vs session cookies)](https://www.ory.sh/web-api-cloud-access-control-authentication/)</span>
+8. <span id="ory-rest-api-docs">Ory Hydra REST API docs</span>
+    1. [Ory Hydra REST API docs](https://www.ory.sh/docs/hydra/sdk/api)
+    2. [OryOS.14 Versioned Github link](https://github.com/ory/docs/blob/v0.0.30%2BoryOS.14/docs/hydra/sdk/api.md)
+9. <span id="openapi-generator">OpenAPI</span>
+    1. [OpenAPI Generator](https://openapi-generator.tech/)
+    2. [Github Link](https://github.com/OpenAPITools/openapi-generator)
+10. <span id="rust-send-sync">Rust Send and Sync Traits</span>
+    1. [Send std docs](https://doc.rust-lang.org/std/marker/trait.Send.html)
+    2. [Send and Sync from the Rustonomicon](https://doc.rust-lang.org/nomicon/send-and-sync.html)
+11. <span id="rust-trait-objects">Rust Trait Objects</span>
+    1. [Generic Data Types](https://doc.rust-lang.org/book/ch10-01-syntax.html)
+    2. [Trait Objects](https://doc.rust-lang.org/1.30.0/book/2018-edition/ch17-02-trait-objects.html)
+12. <span id="rust-testing">Rust Testing</span>
+    1. [Writing Automated Tests from the Rust Book](https://doc.rust-lang.org/book/ch11-00-testing.html)
+    2. [Testing from Rust By Example](https://doc.rust-lang.org/rust-by-example/testing.html)
+13. <span id="oauth2-introspection">OAuth 2.0 Token Introspection Extension</span> 
+    1. [OAuth2 Token Introspection Endpoint from oauth.com](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/)
+    2. [RFC 7662: OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662) 
+    3. [Ory Hydra Introspection docs](https://www.ory.sh/docs/hydra/sdk/api#introspect-oauth2-tokens)
+14. <span id="rust-async-tokio-blocking">Async Rust: Tokio Blocking</span>
+    1. [tokio::task](https://docs.rs/tokio/0.2.9/tokio/task/index.html)
+    2. [tokio::task::block_in_place](https://docs.rs/tokio/0.2.9/tokio/task/fn.block_in_place.html)
+    3. [tokio::task::spawn_blocking](https://docs.rs/tokio/0.2.9/tokio/task/fn.spawn_blocking.html)
