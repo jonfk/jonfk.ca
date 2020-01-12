@@ -574,3 +574,7 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+span:target {
+	  background: yellow;
+}
