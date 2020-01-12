@@ -4,6 +4,7 @@
 ![](https://github.com/jonfk/jonfk.ca/workflows/Node%20CI/badge.svg)
 
 ## Tech used
+
 - Built using [Gatsby](https://www.gatsbyjs.org)
 - Hosted on [Netlify](https://www.netlify.com/)
 - Dependencies kept up to date by [dependabot](https://dependabot.com/)

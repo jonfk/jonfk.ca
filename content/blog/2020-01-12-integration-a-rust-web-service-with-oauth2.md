@@ -4,7 +4,7 @@ date: 2020-01-12
 tags: rust oauth2 hydra http
 ---
 
-I have been using Rust quite a bit more over the last year in a variety of use cases and I have been quite satisfied with 
+I have been using Rust quite a bit more over the last year in a variety of use cases and I have been quite satisfied with
 the language, libraries and the community. So I think it might be time to write a little bit about how well suited Rust works
 in one area that I have worked a lot in, and that is HTTP APIs.
 
@@ -13,6 +13,7 @@ OAuth 2.0 Server and OpenID Connect Provider. I think that might give a decent i
 web development.
 
 What will we be doing in this post:
+
 - What is OAuth 2.0 and when to use it
 - How to integrate with Hydra at a high level
 - Start a rust web server with Warp
@@ -20,27 +21,28 @@ What will we be doing in this post:
 - Write some tests
 
 ## What is OAuth 2.0?
+
 > The OAuth 2.0 authorization framework enables a third-party
 > application to obtain limited access to an HTTP service, either on
 > behalf of a resource owner by orchestrating an approval interaction
-> between the resource owner and the HTTP service, or by allowing the 
+> between the resource owner and the HTTP service, or by allowing the
 > third-party application to obtain access on its own behalf.
-From [RFC 6749: The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
+> From [RFC 6749: The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 
-Essentially OAuth 2.0 enables applications (servers, mobile apps, SPAs, etc) to obtain access tokens to access 
+Essentially OAuth 2.0 enables applications (servers, mobile apps, SPAs, etc) to obtain access tokens to access
 an HTTP service scoped only to authorized actions/resources without needing the username and passwork of the
-account it would like to obtain access on behalf of. 
+account it would like to obtain access on behalf of.
 
 An example of this is if you would like to give access to your youtube account to an application to manage your comments.
 You wouldn't want that application to also be able to post videos for you or change your profile page. You can do this with OAuth 2.0
-by authorizing that application if it has an OAuth 2.0 client with Youtube. That application can go through an OAuth 2.0 flow that 
+by authorizing that application if it has an OAuth 2.0 client with Youtube. That application can go through an OAuth 2.0 flow that
 will give it an access token that it can use possibly in conjunction with it's own client credentials to get access to manage
 your comments.
 
 If you noticed, there are a few caveats in my description such as an OAuth 2.0 client may or may not have it's own credentials, it may
 also be able to get information on your account by including the right scopes or it may use different grant types to obtain access.
-This is because OAuth 2.0 isn't a protocol as much as a framework for a protocol. It allows implementors of the OAuth 2.0 spec a lot of 
-flexibility so that it can be used in multiple use cases, but this ends up adding a lot of complexity to OAuth 2.0. This is why 
+This is because OAuth 2.0 isn't a protocol as much as a framework for a protocol. It allows implementors of the OAuth 2.0 spec a lot of
+flexibility so that it can be used in multiple use cases, but this ends up adding a lot of complexity to OAuth 2.0. This is why
 it is strongly recommended to either use a library or off the shelf solution instead of implementing an OAuth 2.0 server yourself.
 
 ### When should you used it?
@@ -53,14 +55,14 @@ For more information, check out the following [post describing different types o
 
 ### Implementing authorization through OAuth2
 
-After having implemented and maintained OAuth2 servers with the Spring library in Java, I have a strong preference not to do that 
-anymore. The reasons for that would be a post in and of itself, but most of the issues stem from maintainance of such such servers 
-when they also contain much of the business logic for the access and authorization rules. My preference nowadays would be to have 
-a pure spec compliant OAuth2 server that communicates with an authorization server that would implement the custom business rules 
+After having implemented and maintained OAuth2 servers with the Spring library in Java, I have a strong preference not to do that
+anymore. The reasons for that would be a post in and of itself, but most of the issues stem from maintainance of such such servers
+when they also contain much of the business logic for the access and authorization rules. My preference nowadays would be to have
+a pure spec compliant OAuth2 server that communicates with an authorization server that would implement the custom business rules
 needed by my particular implementation.
 
-This is where [Hydra](https://github.com/ory/hydra) comes in, a hardened, OpenID Certified OAuth 2.0 Server and OpenID Connect Provider 
-optimized for low-latency, high throughput, and low resource consumption. Instead of implementing an OAuth2 server yourself, having 
+This is where [Hydra](https://github.com/ory/hydra) comes in, a hardened, OpenID Certified OAuth 2.0 Server and OpenID Connect Provider
+optimized for low-latency, high throughput, and low resource consumption. Instead of implementing an OAuth2 server yourself, having
 to verify your implementation complies with the spec and doesn't have any security holes, we can use Hydra to provide the OAuth2
 server functionality and implement the authentication and authorization logic as seperate services.
 
@@ -106,6 +108,7 @@ env_logger = "0.7"
 ```
 
 ---
+
 **Note**
 
 I am using the unrelease version of warp from master, tagget at the latest revision as of this writing. This is
@@ -155,6 +158,7 @@ Since we will also need login and consent pages for the Hydra integration, let's
 we will be using the [Tera templating library](https://crates.io/crates/tera). There are many other templating
 libraries in rust and you can find a non-exhaustive list [here](https://www.arewewebyet.org/topics/templating/).
 So let's add that dependency and use it.
+
 ```toml:title=Cargo.toml
 ...
 [dependencies]
@@ -203,6 +207,7 @@ async fn main() {
 ```
 
 Now if we test our hello endpoint again, we should see it returning html instead.
+
 ```
 curl -i http://localhost:3000/hello/jon
 HTTP/1.1 200 OK
@@ -225,9 +230,10 @@ date: Sat, 04 Jan 2020 19:59:03 GMT
 Or you could point your browser to http://localhost:3000/hello/name, to see the html rendered.
 
 ---
+
 **Note**
 
-You will notice that I am using `.unwrap()` is several places where the function is returning 
+You will notice that I am using `.unwrap()` is several places where the function is returning
 a [Result](https://doc.rust-lang.org/std/result/). I am doing that so that I don't have do to error
 handling yet. I will be adding error handling in a later section but for now, if you want more
 information about error handling in rust, [this section of the book](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
@@ -235,14 +241,14 @@ should help.
 
 ---
 
-### Login and consent 
+### Login and consent
 
 We showed the basic building blocks for creating a web service in the previous section. Let's put that to use
-and build our integration to our OAuth 2.0 server. We will implement the login and consent pages and their 
+and build our integration to our OAuth 2.0 server. We will implement the login and consent pages and their
 corresponding form post endpoints.
 
-We will first need to update dependencies to add [Serde](https://serde.rs/) which is the library in 
-Rust to serialize/deserialize to various data formats. 
+We will first need to update dependencies to add [Serde](https://serde.rs/) which is the library in
+Rust to serialize/deserialize to various data formats.
 
 ```toml:title=Cargo.toml
 ...
@@ -346,7 +352,6 @@ pub fn login_page() -> warp::filters::BoxedFilter<(impl warp::Reply,)> {
 If we submit the login form from the login page, we should receive a 404. To fix that
 we need to implement the form post handling endpoint.
 
-
 ```rust:title=src/main.rs
 use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
@@ -383,7 +388,7 @@ pub fn accept_login() -> warp::filters::BoxedFilter<(impl warp::Reply,)> {
 ```
 
 We now have a working login page and login handler which returns the form body back
-as json. So if you try to login with the username, `"username"`, and password, 
+as json. So if you try to login with the username, `"username"`, and password,
 `"password"`, we should receive the following.
 
 ```json:title=http://localhost:3000/login
@@ -403,12 +408,12 @@ TODO Add some explanation of what is happening in the rust code.
 ### Setting up the Hydra services
 
 To be able to test our integration to hydra we will need to run it locally and to do that, the easiest way
-I found is to run hydra with their [docker-compose](https://github.com/ory/hydra/blob/v1.2.0/quickstart-postgres.yml) file. 
+I found is to run hydra with their [docker-compose](https://github.com/ory/hydra/blob/v1.2.0/quickstart-postgres.yml) file.
 We will then make a few modifications to it. We could run hydra with an in-memory database, but with a local postgres database
 we will be able to see how the api calls we will be doing to the hydra instance affect it's data store.
 
 ```yaml:title=docker-compose.yml
-version: '3.3'
+version: "3.3"
 services:
   postgres:
     image: postgres:latest
@@ -427,8 +432,7 @@ services:
       - "4444:4444" # Public port
       - "4445:4445" # Admin port
       - "5555:5555" # Port for hydra token user
-    command:
-      serve all --dangerous-force-http
+    command: serve all --dangerous-force-http
     environment:
       # https://www.ory.sh/docs/hydra/configuration
       # - LOG_LEVEL=debug
@@ -449,8 +453,7 @@ services:
     image: oryd/hydra:latest
     environment:
       - DSN=postgres://hydra:hello@postgres:5432/hydra?sslmode=disable&max_conns=20&max_idle_conns=4
-    command:
-      migrate sql -e --yes
+    command: migrate sql -e --yes
     restart: on-failure
 ```
 
@@ -475,7 +478,7 @@ The main difference between this `docker-compose.yml` file and the one provided 
 
 The Hydra server provides [public and admin REST APIs](#ory-rest-api-docs) to interface with it and allows us to implement the integration.
 They also provide sdks, for Go and Javascript, but since we are using Rust we will need to implement our own. Luckily
-they also provide [OpenAPI specs](https://github.com/ory/hydra/blob/v1.2.0/docs/api.swagger.json) and the OpenAPI 
+they also provide [OpenAPI specs](https://github.com/ory/hydra/blob/v1.2.0/docs/api.swagger.json) and the OpenAPI
 generator implements a Rust client generator. The code quality isn't great but that should be enough to get us started
 with our integration and we can always improve it later by implementing our own client using the generated models.
 
@@ -499,10 +502,9 @@ set -x
 docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli:latest generate -i https://raw.githubusercontent.com/ory/hydra/v1.1.1/docs/api.swagger.json --package-name hydra --library reqwest -g rust -o /local/hydra
 ```
 
-
-Now we have 2 crates of code, one that we wrote and the other that we generated. We will need to make some space 
-where this new crate can live and compile the together. Cargo provides  the workspace functionality for handling 
-multiple crates in the same repository. To do that, we will move the code we have written so far into a sub 
+Now we have 2 crates of code, one that we wrote and the other that we generated. We will need to make some space
+where this new crate can live and compile the together. Cargo provides the workspace functionality for handling
+multiple crates in the same repository. To do that, we will move the code we have written so far into a sub
 directory. Let's call that the `auth` directory.
 
 ```bash
@@ -566,7 +568,7 @@ error: build failed
 
 Let's check out the file and see what's wrong. The rust compiler is helpful enough
 to give us the exact location of the error. Well the error looks pretty simple, the
-`client` created within the function body at `let client = &configuration.client;` is 
+`client` created within the function body at `let client = &configuration.client;` is
 shadowing the `client` from the function parameters. The solution is just as simple,
 let's just rename the function parameter to `client_id` since that's actually what is
 being sent here. The changed lines will be as follows.
@@ -589,10 +591,10 @@ being sent here. The changed lines will be as follows.
 
 ### Updating our login and consent implementation
 
-Now that we have our generated hydra client library, we want to integrate this into our `auth` project. Let's 
-take a look at the code. For reading and getting a quick overview of the code. My preferred way of doing this 
+Now that we have our generated hydra client library, we want to integrate this into our `auth` project. Let's
+take a look at the code. For reading and getting a quick overview of the code. My preferred way of doing this
 is by reading the documentation. Even when there is no documentation, Rust generates pretty nice documentation
-from the public types and provides a fairly intuitive way of navigating and searching the interface. To do generate 
+from the public types and provides a fairly intuitive way of navigating and searching the interface. To do generate
 the documentation, Cargo provides the `doc` command.
 
 ```
@@ -603,7 +605,7 @@ If your browser didn't open with documentation page, you should be able to find 
 in the root directory of the project.
 
 Once the documentation is opened, you should find the hydra crate which will be in the crates list. Inside, you will find
-2 modules, the apis and models modules. Inside the apis module, we will find the structs and traits that will help us 
+2 modules, the apis and models modules. Inside the apis module, we will find the structs and traits that will help us
 communicate with hydra. The `AdminApiClient` will be the one we care about to implement the login and consent features.
 
 ```
@@ -612,10 +614,10 @@ pub fn new(configuration: Rc<Configuration>) -> AdminApiClient
 ```
 
 We can see that `AdminApiClient` has a new function to create a new instance of the struct and it takes a `Rc<Configuration>`.
-`Rc<Configuration>` is a reference counted pointer to a Configuration struct and the Configuration struct has some fields 
+`Rc<Configuration>` is a reference counted pointer to a Configuration struct and the Configuration struct has some fields
 that helps the ApiClient figure out how to make calls to the hydra instance.
 
-Similar to the Tera template renderer, we will create a Warp Filter that will contain the AdminApiClient and pass it to the 
+Similar to the Tera template renderer, we will create a Warp Filter that will contain the AdminApiClient and pass it to the
 function handling the endpoints. But first we need to add the dependency to the hydra crate to our main auth crate.
 
 ```toml:title=auth/Cargo.toml
@@ -658,7 +660,7 @@ error[E0277]: `std::rc::Rc<hydra::apis::configuration::Configuration>` cannot be
    = note: required because it appears within the type `(hydra::apis::admin_api::AdminApiClient,)`
 ```
 
-What is Send? [Send](#rust-send-sync) is a marker trait that states whether something can be sent between threads (i.e. thread-safe). 
+What is Send? [Send](#rust-send-sync) is a marker trait that states whether something can be sent between threads (i.e. thread-safe).
 What can we do? Well not much, it seems that Warp requires state passed into it's filters to be thread safe since it aims to concurrently
 handle requests with multiple threads but the openapi code generator produced code that can't. We are going to have to modify the generated code
 just enough to make it thread safe. One way to do that is simply to switch the Rc with [Arc](https://doc.rust-lang.org/std/sync/struct.Arc.html)
@@ -758,25 +760,26 @@ pub fn login_page() -> warp::filters::BoxedFilter<(impl warp::Reply,)> {
 }
 ```
 
-There is quite a bit happening here, so let's explain. First, I added info logging in a few places, which is why 
+There is quite a bit happening here, so let's explain. First, I added info logging in a few places, which is why
 I added the `log::info` dependency. We will need to turn on the logs later on, but let's not worry about that for now.
 The logic goes as follows:
+
 1. We map the `login_challenge` from the query parameters, if it doesn't exist, we render a login page without
-login challenge. I did this because I expected the login page to also be usable outside of an oauth2 flow, in which case
-we could simply return a session cookie once the user is authenticated. We could also have simply returned an 
-error if the login challenge wasn't there.
-2. If the login challenge exists, we call hydra's get login request api and with the login request we check if 
-we could skip the login page if the user had successfully authenticated with this browser in the past. 
-3. If we can skip the user authentication, we go straight into accepting the login request with the hydra api. This is 
-also where we could have added some logic before calling the accept login api to do various checks.
-4. Once the login request is accepted, we redirect to the url provided by hydra or to the homepage if it's not provided. In 
-this case since we are expecting to be redirected by hydra, we could also have returned an error page if the redirect url was
-empty.
+   login challenge. I did this because I expected the login page to also be usable outside of an oauth2 flow, in which case
+   we could simply return a session cookie once the user is authenticated. We could also have simply returned an
+   error if the login challenge wasn't there.
+2. If the login challenge exists, we call hydra's get login request api and with the login request we check if
+   we could skip the login page if the user had successfully authenticated with this browser in the past.
+3. If we can skip the user authentication, we go straight into accepting the login request with the hydra api. This is
+   also where we could have added some logic before calling the accept login api to do various checks.
+4. Once the login request is accepted, we redirect to the url provided by hydra or to the homepage if it's not provided. In
+   this case since we are expecting to be redirected by hydra, we could also have returned an error page if the redirect url was
+   empty.
 5. If we can't skip authentication, we send the user to the login page with the login challenge set.
 
 Something else you may have noticed is that instead of returning a `warp::Reply` directly, I wrapped it inside of a Box so that
 our function is returning a trait object. This is because we are returning 2 different types both implementing the Reply trait
-in the 2 branches of our if else expression. This wouldn't work unless we make them both the same type by turning them into trait 
+in the 2 branches of our if else expression. This wouldn't work unless we make them both the same type by turning them into trait
 objects. To learn more about Trait Objects check out these [links](#rust-trait-objects).
 
 I also imported the `std::str::FromStr` trait so that it can be used to convert an `&str` to a `Uri`.
@@ -838,7 +841,7 @@ And following the same principles as the login logic, we can do the same for the
 #### Enabling logging
 
 Before we finish, let's print the logs that we inserted. To do that we will be using the env_logger library.
-It's a fairly simple library that allows you to control the log level and which crates should have it's logs 
+It's a fairly simple library that allows you to control the log level and which crates should have it's logs
 enabled through an environment variable, by default that env var is `RUST_LOG`.
 
 I will also add the log Filter from warp to give us access logs on our endpoints.
@@ -856,8 +859,7 @@ async fn main() {
 }
 ```
 
-TODO Add link to github branch 
-
+TODO Add link to github branch
 
 ### Testing our login and consent integration
 
@@ -884,7 +886,7 @@ curl -X POST \
 }'
 ```
 
-To start the flow, navigate to [Authorization Initialization link](localhost:4444/oauth2/auth?client_id=my-implicit-client&response_type=token&scope=offline&state=blahblahblah) 
+To start the flow, navigate to [Authorization Initialization link](localhost:4444/oauth2/auth?client_id=my-implicit-client&response_type=token&scope=offline&state=blahblahblah)
 which is usually generated by an OAuth2 client or library.
 
 After going through the login and consent pages, we should end up back on the welcome page with the access token.
@@ -893,10 +895,10 @@ After going through the login and consent pages, we should end up back on the we
 http://localhost:3000/#access_token=IQc9NKSJyHS9Vy9iS05kyXVoUTkXexCQPxq-6_Ly5C8.m5m7P-RYhty0o47x35D1uF-k_JJdttzjxqqw11Kr22M&expires_in=3600&scope=offline&state=blahblahblah&token_type=bearer
 ```
 
-Since we know that our integration is working, let's write a test that we can run to verify that it keeps working in the 
-future. To do that, we will create a `tests` directory in our `auth` project. That's where integration tests usually go, 
-whereas unit tests can be written inline (For more information on tests check out these [links](#rust-testing)). But we 
-might want to refer to some structs from our crate such as the form model structs, currently we can't do that because we 
+Since we know that our integration is working, let's write a test that we can run to verify that it keeps working in the
+future. To do that, we will create a `tests` directory in our `auth` project. That's where integration tests usually go,
+whereas unit tests can be written inline (For more information on tests check out these [links](#rust-testing)). But we
+might want to refer to some structs from our crate such as the form model structs, currently we can't do that because we
 wrote all our code in a `main.rs` file which is used for creating a binary. We would need to move the code that we would
 like to be able to share as a library into a `lib.rs` file.
 
@@ -999,7 +1001,7 @@ fn check_hydra(hydra_url: &str) {
 }
 ```
 
-As we saw in our manual test, we will first need to create an oauth2 client to do our test. To know 
+As we saw in our manual test, we will first need to create an oauth2 client to do our test. To know
 which type of oauth2 client we want to create, we should decide what we will be testing. So let's say
 we will be testing the authorization code grant type.
 
@@ -1095,7 +1097,7 @@ fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
 ```
 
 Usually the authorize url would then be used to redirect the user (resource owner) to initiate the
-authorization process. But since we are writing an automated test, we will be emulating the browser 
+authorization process. But since we are writing an automated test, we will be emulating the browser
 with an http client and call our login and consent apis directly.
 
 ```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
@@ -1242,7 +1244,6 @@ fn perform_consent_flow(
 With the final redirected url, we will receive an auth code that is used in the authorization code grant type
 to get our access token.
 
-
 ```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
 
 fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
@@ -1300,7 +1301,7 @@ fn introspect_access_token(hydra_admin_client: &AdminApiClient, access_token: &s
 }
 ```
 
-We can now run our test to see everything running. Since I added some print statements, to be 
+We can now run our test to see everything running. Since I added some print statements, to be
 able to see those we will also need to run the test command with the `--nocapture` flag.
 
 ```
@@ -1311,11 +1312,11 @@ cargo test -- --nocapture
 
 If you have kept up to date with Async Rust, you may have noticed that the hydra generated client
 uses the blocking version of the Reqwest library to make it's api calls. This means that by making
-these API calls we are blocking the tokio executor. What this means is that in cases of load on our 
+these API calls we are blocking the tokio executor. What this means is that in cases of load on our
 auth server, the server may have all it's executor threads blocked on the blocking call we are currently
 making and prevent the server from serving as many requests as it could.
 
-There are 2 ways to fix, the easiest would be to move the blocking call into a thread where blocking isn't 
+There are 2 ways to fix, the easiest would be to move the blocking call into a thread where blocking isn't
 an issue. To do that we could spawn the blocking call on a seperate thread where we wouldn't block the tokio
 executor. See these [links for more info](#rust-async-tokio-blocking).
 
@@ -1328,32 +1329,31 @@ We now have a working OAuth 2.0 authorization server integrated with a barebones
 this isn't the end, there are lots of things we could improve or do with our system. In no particular
 order
 
-* Add CSRF protection to our login and consent pages and endpoints. This is necessary to prevent a class
-of attacks called [Login CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Forging_login_requests)
-* Add User management features to our auth service so that it can implement authentication logic
-* Add actual authentication logic to the login endpoints
-* Deploy our service to kubernetes. Hydra already provides [Helm Charts for that](https://github.com/ory/k8s)
-* Making sure to follow Hydra's production guide before deploying our services. [Link](https://www.ory.sh/docs/hydra/production)
-* Put our services behind an API Gateway or reverse proxy so that all our services are available at one address
-* Protect a web service's resources(resource server) with our authorization server
-* Integrate with Ory's other projects such as [Keto](https://github.com/ory/keto) to provide Access Control rules processing
-
+- Add CSRF protection to our login and consent pages and endpoints. This is necessary to prevent a class
+  of attacks called [Login CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Forging_login_requests)
+- Add User management features to our auth service so that it can implement authentication logic
+- Add actual authentication logic to the login endpoints
+- Deploy our service to kubernetes. Hydra already provides [Helm Charts for that](https://github.com/ory/k8s)
+- Making sure to follow Hydra's production guide before deploying our services. [Link](https://www.ory.sh/docs/hydra/production)
+- Put our services behind an API Gateway or reverse proxy so that all our services are available at one address
+- Protect a web service's resources(resource server) with our authorization server
+- Integrate with Ory's other projects such as [Keto](https://github.com/ory/keto) to provide Access Control rules processing
 
 ## References
 
 1. <span id="rfc-6749">[RFC 6749: The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)</span>
 2. <span id="ietf-rfcs-list">[List of IETF OAuth 2.0 RFCs](https://tools.ietf.org/wg/oauth/)</span>
-3. <span id="oauth-net-links">[Links to various documents about OAuth 2.0](https://oauth.net/2/) from oauth.net</span> 
+3. <span id="oauth-net-links">[Links to various documents about OAuth 2.0](https://oauth.net/2/) from oauth.net</span>
 4. <span id="oauth-security-best-practices">[The latest security best practices for OAuth 2.0](https://tools.ietf.org/html/draft-ietf-oauth-security-topics-12)</span>
 5. <span id="oauth-2-simplified">[OAuth 2.0 Simplified](https://aaronparecki.com/oauth-2-simplified/) by Aaron Parecki</span>
 6. <span id="hydra-spring-authn">A previous Hydra integration I wrote with Spring and Java [Git Repo](https://github.com/jonfk/hydra-spring-authn-authz-example)</span>
 7. <span id="ory-access-authz-patterns">[Information about when you may want to use different types of access control (Access Tokens vs session cookies)](https://www.ory.sh/web-api-cloud-access-control-authentication/)</span>
 8. <span id="ory-rest-api-docs">Ory Hydra REST API docs</span>
-    1. [Ory Hydra REST API docs](https://www.ory.sh/docs/hydra/sdk/api)
-    2. [OryOS.14 Versioned Github link](https://github.com/ory/docs/blob/v0.0.30%2BoryOS.14/docs/hydra/sdk/api.md)
+   1. [Ory Hydra REST API docs](https://www.ory.sh/docs/hydra/sdk/api)
+   2. [OryOS.14 Versioned Github link](https://github.com/ory/docs/blob/v0.0.30%2BoryOS.14/docs/hydra/sdk/api.md)
 9. <span id="openapi-generator">OpenAPI</span>
-    1. [OpenAPI Generator](https://openapi-generator.tech/)
-    2. [Github Link](https://github.com/OpenAPITools/openapi-generator)
+   1. [OpenAPI Generator](https://openapi-generator.tech/)
+   2. [Github Link](https://github.com/OpenAPITools/openapi-generator)
 10. <span id="rust-send-sync">Rust Send and Sync Traits</span>
     1. [Send std docs](https://doc.rust-lang.org/std/marker/trait.Send.html)
     2. [Send and Sync from the Rustonomicon](https://doc.rust-lang.org/nomicon/send-and-sync.html)
@@ -1363,9 +1363,9 @@ of attacks called [Login CSRF](https://en.wikipedia.org/wiki/Cross-site_request_
 12. <span id="rust-testing">Rust Testing</span>
     1. [Writing Automated Tests from the Rust Book](https://doc.rust-lang.org/book/ch11-00-testing.html)
     2. [Testing from Rust By Example](https://doc.rust-lang.org/rust-by-example/testing.html)
-13. <span id="oauth2-introspection">OAuth 2.0 Token Introspection Extension</span> 
+13. <span id="oauth2-introspection">OAuth 2.0 Token Introspection Extension</span>
     1. [OAuth2 Token Introspection Endpoint from oauth.com](https://www.oauth.com/oauth2-servers/token-introspection-endpoint/)
-    2. [RFC 7662: OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662) 
+    2. [RFC 7662: OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662)
     3. [Ory Hydra Introspection docs](https://www.ory.sh/docs/hydra/sdk/api#introspect-oauth2-tokens)
 14. <span id="rust-async-tokio-blocking">Async Rust: Tokio Blocking</span>
     1. [tokio::task](https://docs.rs/tokio/0.2.9/tokio/task/index.html)

@@ -13,9 +13,11 @@ const BlogPostTemplate = ({ data }) => {
     <Layout>
       <SEO title={title} description={post.excerpt} />
       <article>
-          <header style={{
-              marginBottom: `1em`,
-          }}>
+        <header
+          style={{
+            marginBottom: `1em`,
+          }}
+        >
           <h2
             style={{
               marginBottom: `0.5em`,
