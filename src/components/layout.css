@@ -592,6 +592,7 @@ span:target {
     border-top-right-radius: 0.3em;
 }
 
-.tight-list + ol li {
+.tight-list + ol * {
     margin-bottom: 0;
+    margin-top: 0;
 }
