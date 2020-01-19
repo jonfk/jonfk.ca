@@ -53,6 +53,22 @@ module.exports = {
               maxWidth: 650,
             },
           },
+          {
+            resolve: "gatsby-remark-code-titles",
+            options: {
+              className: "gatsby-remark-code-title",
+            },
+          }, // IMPORTANT: this must be ahead of other plugins that use code blocks
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "Table of Contents",
+              tight: false,
+              fromHeading: 2,
+              toHeading: 6,
+            },
+          },
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
@@ -75,7 +91,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Alegreya SC", "PT Sans", "Montserrat", "Ubuntu Mono"],
+          families: ["Alegreya SC", "PT Sans", "Ubuntu Mono"],
         },
       },
     },
