@@ -1,5 +1,5 @@
 ---
-title: Integrating Ory Hydra OAuth 2.0 with a rust web service
+title: Integrating Ory Hydra OAuth 2.0 with a Rust web service
 date: 2020-01-12
 tags: rust oauth2 hydra http
 ---
@@ -8,17 +8,18 @@ I have been using Rust quite a bit more over the last year in a variety of use c
 the language, libraries and the community. So I think it might be time to write a little bit about how well suited Rust works
 in one area that I have worked a lot in, and that is HTTP APIs.
 
-For this post I will be covering using Rust to write a web service that integrates with the [Ory Hydra](https://github.com/ory/hydra)
-OAuth 2.0 Server and OpenID Connect Provider. I think that might give a decent idea of the features offered by Rust and Rust libraries for
-web development.
+For this post I will be covering using Rust to write a web service that integrates with the [Ory Hydra OAuth 2.0
+Server and OpenID Connect Provider](https://github.com/ory/hydra). I think that might give a decent idea of the 
+features offered by Rust and Rust libraries for web development.
+
+Before we start, all the code we will be working on will be pushed to the following [repository](https://github.com/jonfk/hydra-auth-example-rs)
+
 
 What will we be doing in this post:
 
-- What is OAuth 2.0 and when to use it
-- How to integrate with Hydra at a high level
-- Start a rust web server with Warp
-- Implement the hydra call in the Warp server
-- Write some tests
+```toc
+# This code block gets replaced with the TOC
+```
 
 ## What is OAuth 2.0?
 
@@ -30,43 +31,66 @@ What will we be doing in this post:
 > From [RFC 6749: The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 
 Essentially OAuth 2.0 enables applications (servers, mobile apps, SPAs, etc) to obtain access tokens to access
-an HTTP service scoped only to authorized actions/resources without needing the username and passwork of the
+an HTTP service scoped only to authorized actions/resources without needing the username and password of the
 account it would like to obtain access on behalf of.
 
-An example of this is if you would like to give access to your youtube account to an application to manage your comments.
+As an almost too short to be correct summary of the OAuth 2.0 Authorization Framework, it defines 2 endpoints, the authorization
+and the token endpoints. The first is to request authorization with the scopes one would like to receive and the second is to
+request tokens. It also defines a set of grant types (authorization code, client credentials, etc...) and flows to follow
+for the different grant types. As for crypto, the protocol simply defines that it needs to be over https. So what we will be
+doing here won't actually be to spec until we put TLS termination into our system.
+
+There are also several extensions to the protocol, the most important one we will be interested in in this post is the
+[Introspection endpoint](#oauth2-introspection) which defines how resource servers communicate with the authorization server to verify access
+tokens. Another important one that might be of interested but that we won't cover in this post is the [OpenID Connect 1.0
+specification](#oauth2-openid-connect) which is a protocol build over OAuth 2.0.
+
+An example use case where we would use OAuth 2 is when you would like to give access to your youtube account to an application to manage your comments.
 You wouldn't want that application to also be able to post videos for you or change your profile page. You can do this with OAuth 2.0
 by authorizing that application if it has an OAuth 2.0 client with Youtube. That application can go through an OAuth 2.0 flow that
-will give it an access token that it can use possibly in conjunction with it's own client credentials to get access to manage
-your comments.
+will give it an access token that it can then use to get access to manage your comments.
 
-If you noticed, there are a few caveats in my description such as an OAuth 2.0 client may or may not have it's own credentials, it may
-also be able to get information on your account by including the right scopes or it may use different grant types to obtain access.
-This is because OAuth 2.0 isn't a protocol as much as a framework for a protocol. It allows implementors of the OAuth 2.0 spec a lot of
-flexibility so that it can be used in multiple use cases, but this ends up adding a lot of complexity to OAuth 2.0. This is why
-it is strongly recommended to either use a library or off the shelf solution instead of implementing an OAuth 2.0 server yourself.
+Although at first glance, the protocol may sound simple, it is anything but, implementing a spec compliant and interoperable version
+of the protocol that doesn't have security holes, takes some serious work and no one should trust such an implementation without at
+least an audit. So how can we use it then if we don't have deep pockets and all the time in the world to write one? That's what we
+will try to answer in this post using an existing and well tested OAuth 2.0 server with a well documented API.
 
 ### When should you used it?
 
+Given the additional complexity that implementing and integration an OAuth 2.0 server adds to a project, why should you use OAuth 2?
+
 The rule of thumb for when you need an OAuth 2.0 implementation, is if you need the ability to authorize third party applications
-to access your services, then you need OAuth 2.0. Otherwise, if you only need the ability to authorize users on your services through
+to access your services. Otherwise, if you only need the ability to authorize users on your services through
 first party clients or applications, an encrypted cookie may better serve you.
 
 For more information, check out the following [post describing different types of access control and authorization patterns](#ory-access-authz-patterns).
 
-### Implementing authorization through OAuth2
+### Implementing authorization with OAuth 2.0
 
-After having implemented and maintained OAuth2 servers with the Spring library in Java, I have a strong preference not to do that
-anymore. The reasons for that would be a post in and of itself, but most of the issues stem from maintainance of such such servers
-when they also contain much of the business logic for the access and authorization rules. My preference nowadays would be to have
-a pure spec compliant OAuth2 server that communicates with an authorization server that would implement the custom business rules
-needed by my particular implementation.
+Although it is of course possible to implement an OAuth 2.0 server from scratch, it is strongly not recommended to do so. Getting
+something wrong with the fundamental building blocks of the security of your system is not to be taken lightly. Another way to
+implement an OAuth 2 server is with your language's trusted OAuth 2 libraries. Being maintained and kept updated by domain 
+experts, means that your service will have more eyes to find bugs as more people would be using them and gives your an OAuth 
+implementation almost for free.
+
+But after having implemented and maintained OAuth2 servers with the Spring OAuth 2 library in Java, I have grown a strong distaste 
+towards this solution too. The reasons for that could be a post in and of itself, but most of the issues stem from maintenance of such such servers
+when they also contain much of the business logic for the access and authorization rules. It doesn't mean that this needs to be the case
+but it is often the case in my experience when we go this way.
+
+That is why my preference nowadays lean towards the 3rd solution to implementing an authorization server, by using an external blessed
+implementation with good integration mechanisms. This forces you to keep your business logic and custom authorization rules seperate 
+from a pure spec OAuth 2.0 or OpenID Connect server.
+
+## Hydra: An OpenID Certified OAuth 2.0 Server and OpenID Connect Provider
 
 This is where [Hydra](https://github.com/ory/hydra) comes in, a hardened, OpenID Certified OAuth 2.0 Server and OpenID Connect Provider
 optimized for low-latency, high throughput, and low resource consumption. Instead of implementing an OAuth2 server yourself, having
 to verify your implementation complies with the spec and doesn't have any security holes, we can use Hydra to provide the OAuth2
-server functionality and implement the authentication and authorization logic as seperate services.
+server functionality and implement the authentication and authorization logic as separate services.
 
-### Implementing a Hydra integration
+
+### Integrating with Hydra
 
 To integrate with the Hydra OAuth2 server, we need to implement a login and consent application. You can review the documentation for
 doing so [here](https://www.ory.sh/docs/hydra/login-consent-flow).
@@ -106,16 +130,6 @@ tokio = "0.2.6"
 log = "0.4.8"
 env_logger = "0.7"
 ```
-
----
-
-**Note**
-
-I am using the unrelease version of warp from master, tagget at the latest revision as of this writing. This is
-because I would like to use async/await that was just shipped to Rust 1.39 a few months ago. Once a release
-of Warp supporting async await is published, I will be changing this to that released version.
-
----
 
 ### Hello World
 
@@ -235,7 +249,7 @@ Or you could point your browser to http://localhost:3000/hello/name, to see the 
 
 You will notice that I am using `.unwrap()` is several places where the function is returning
 a [Result](https://doc.rust-lang.org/std/result/). I am doing that so that I don't have do to error
-handling yet. I will be adding error handling in a later section but for now, if you want more
+handling yet. I may write another post about error handling but for now, if you want more
 information about error handling in rust, [this section of the book](https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html)
 should help.
 
@@ -399,18 +413,16 @@ as json. So if you try to login with the username, `"username"`, and password,
 }
 ```
 
-Following the same pattern, you can add the consent page and post endpoint. Once done
-you should have something similar to [this]().
+Following the same pattern, you can add the consent page and post endpoint.
 
-TODO Add link to github branch with current status of code.
-TODO Add some explanation of what is happening in the rust code.
+You can see what you should end up with [here](https://github.com/jonfk/hydra-auth-example-rs/tree/1-login-and-consent)
 
 ### Setting up the Hydra services
 
 To be able to test our integration to hydra we will need to run it locally and to do that, the easiest way
 I found is to run hydra with their [docker-compose](https://github.com/ory/hydra/blob/v1.2.0/quickstart-postgres.yml) file.
 We will then make a few modifications to it. We could run hydra with an in-memory database, but with a local postgres database
-we will be able to see how the api calls we will be doing to the hydra instance affect it's data store.
+we will be able to see how the api calls we will be doing to the hydra instance affect its data store.
 
 ```yaml:title=docker-compose.yml
 version: "3.3"
@@ -594,7 +606,7 @@ being sent here. The changed lines will be as follows.
 Now that we have our generated hydra client library, we want to integrate this into our `auth` project. Let's
 take a look at the code. For reading and getting a quick overview of the code. My preferred way of doing this
 is by reading the documentation. Even when there is no documentation, Rust generates pretty nice documentation
-from the public types and provides a fairly intuitive way of navigating and searching the interface. To do generate
+from the public types and provides a fairly intuitive way of navigating and searching the interface. To generate
 the documentation, Cargo provides the `doc` command.
 
 ```
@@ -859,7 +871,7 @@ async fn main() {
 }
 ```
 
-TODO Add link to github branch
+[What you should now have.](https://github.com/jonfk/hydra-auth-example-rs/tree/2-login-and-consent-with-hydra)
 
 ### Testing our login and consent integration
 
@@ -1308,6 +1320,8 @@ able to see those we will also need to run the test command with the `--nocaptur
 cargo test -- --nocapture
 ```
 
+[Code with the test](https://github.com/jonfk/hydra-auth-example-rs/tree/3-integration-test)
+
 ### Async Rust
 
 If you have kept up to date with Async Rust, you may have noticed that the hydra generated client
@@ -1325,10 +1339,15 @@ of reqwest is such a client.
 
 ## Where to go from here?
 
-We now have a working OAuth 2.0 authorization server integrated with a barebones auth server, but
-this isn't the end, there are lots of things we could improve or do with our system. In no particular
-order
+We now have a working OAuth 2.0 authorization server integrated with a barebones auth server. 
+Having a working OAuth server is only the start of implementing a good authorization scheme for
+a web service. Integrating it with your services, making access control decisions, how to pass
+authorization information to your resource servers are only some of the things that still need to be
+done to get a working system. We also took several shortcuts in this demo to keep the code short and
+focus on the parts we care about more but there are also several things that need to be done to make our
+service production ready. Here are several things I can see need improvement in no particular order: 
 
+- Error handling, currently our service will panic at anything deviating from the happy path
 - Add CSRF protection to our login and consent pages and endpoints. This is necessary to prevent a class
   of attacks called [Login CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Forging_login_requests)
 - Add User management features to our auth service so that it can implement authentication logic
@@ -1336,7 +1355,7 @@ order
 - Deploy our service to kubernetes. Hydra already provides [Helm Charts for that](https://github.com/ory/k8s)
 - Making sure to follow Hydra's production guide before deploying our services. [Link](https://www.ory.sh/docs/hydra/production)
 - Put our services behind an API Gateway or reverse proxy so that all our services are available at one address
-- Protect a web service's resources(resource server) with our authorization server
+- Protect a web service's resources(a resource server) with our authorization server
 - Integrate with Ory's other projects such as [Keto](https://github.com/ory/keto) to provide Access Control rules processing
 
 ## References
