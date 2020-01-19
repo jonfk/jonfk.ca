@@ -578,3 +578,16 @@ pre tt:after {
 span:target {
 	  background: yellow;
 }
+
+.gatsby-remark-code-title {
+    margin-bottom: -0.6rem;
+    padding: 0.5em 1em;
+    font-family: "Ubuntu Mono", Consolas, monospace;
+
+    background-color: #bbbbbd;
+    color: black;
+    z-index: 0;
+
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+}
