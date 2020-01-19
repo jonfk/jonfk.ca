@@ -9,11 +9,10 @@ the language, libraries and the community. So I think it might be time to write 
 in one area that I have worked a lot in, and that is HTTP APIs.
 
 For this post I will be covering using Rust to write a web service that integrates with the [Ory Hydra OAuth 2.0
-Server and OpenID Connect Provider](https://github.com/ory/hydra). I think that might give a decent idea of the 
+Server and OpenID Connect Provider](https://github.com/ory/hydra). I think that might give a decent idea of the
 features offered by Rust and Rust libraries for web development.
 
 Before we start, all the code we will be working on will be pushed to the following [repository](https://github.com/jonfk/hydra-auth-example-rs)
-
 
 What will we be doing in this post:
 
@@ -69,17 +68,17 @@ For more information, check out the following [post describing different types o
 
 Although it is of course possible to implement an OAuth 2.0 server from scratch, it is strongly not recommended to do so. Getting
 something wrong with the fundamental building blocks of the security of your system is not to be taken lightly. Another way to
-implement an OAuth 2 server is with your language's trusted OAuth 2 libraries. Being maintained and kept updated by domain 
-experts, means that your service will have more eyes to find bugs as more people would be using them and gives your an OAuth 
+implement an OAuth 2 server is with your language's trusted OAuth 2 libraries. Being maintained and kept updated by domain
+experts, means that your service will have more eyes to find bugs as more people would be using them and gives your an OAuth
 implementation almost for free.
 
-But after having implemented and maintained OAuth2 servers with the Spring OAuth 2 library in Java, I have grown a strong distaste 
+But after having implemented and maintained OAuth2 servers with the Spring OAuth 2 library in Java, I have grown a strong distaste
 towards this solution too. The reasons for that could be a post in and of itself, but most of the issues stem from maintenance of such such servers
 when they also contain much of the business logic for the access and authorization rules. It doesn't mean that this needs to be the case
 but it is often the case in my experience when we go this way.
 
 That is why my preference nowadays lean towards the 3rd solution to implementing an authorization server, by using an external blessed
-implementation with good integration mechanisms. This forces you to keep your business logic and custom authorization rules seperate 
+implementation with good integration mechanisms. This forces you to keep your business logic and custom authorization rules seperate
 from a pure spec OAuth 2.0 or OpenID Connect server.
 
 ## Hydra: An OpenID Certified OAuth 2.0 Server and OpenID Connect Provider
@@ -88,7 +87,6 @@ This is where [Hydra](https://github.com/ory/hydra) comes in, a hardened, OpenID
 optimized for low-latency, high throughput, and low resource consumption. Instead of implementing an OAuth2 server yourself, having
 to verify your implementation complies with the spec and doesn't have any security holes, we can use Hydra to provide the OAuth2
 server functionality and implement the authentication and authorization logic as separate services.
-
 
 ### Integrating with Hydra
 
@@ -1339,13 +1337,13 @@ of reqwest is such a client.
 
 ## Where to go from here?
 
-We now have a working OAuth 2.0 authorization server integrated with a bare bones auth server. 
+We now have a working OAuth 2.0 authorization server integrated with a bare bones auth server.
 Having a working OAuth server is only the start of implementing a good authorization system for
 a web service. Integrating it with your services, making access control decisions, how to pass
 authorization information to your resource servers are only some of the things that still need to be
 done to get a working system. We also took several shortcuts in this demo to keep the code short and
 focus on the parts we care about more but there are also several things that need to be done to make our
-service production ready. Here are several things I can see need improvement in no particular order: 
+service production ready. Here are several things I can see need improvement in no particular order:
 
 - Error handling, currently our service will panic at anything deviating from the happy path
 - Add CSRF protection to our login and consent pages and endpoints. This is necessary to prevent a class
@@ -1360,6 +1358,8 @@ service production ready. Here are several things I can see need improvement in 
 - Integrate with Ory's other projects such as [Keto](https://github.com/ory/keto) to provide Access Control rules processing
 
 ## References
+
+<div class="tight-list"></div>
 
 1. <span id="rfc-6749">[RFC 6749: The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)</span>
 2. <span id="ietf-rfcs-list">[List of IETF OAuth 2.0 RFCs](https://tools.ietf.org/wg/oauth/)</span>
