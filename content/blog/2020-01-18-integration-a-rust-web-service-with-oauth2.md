@@ -1339,8 +1339,8 @@ of reqwest is such a client.
 
 ## Where to go from here?
 
-We now have a working OAuth 2.0 authorization server integrated with a barebones auth server. 
-Having a working OAuth server is only the start of implementing a good authorization scheme for
+We now have a working OAuth 2.0 authorization server integrated with a bare bones auth server. 
+Having a working OAuth server is only the start of implementing a good authorization system for
 a web service. Integrating it with your services, making access control decisions, how to pass
 authorization information to your resource servers are only some of the things that still need to be
 done to get a working system. We also took several shortcuts in this demo to keep the code short and
@@ -1355,6 +1355,7 @@ service production ready. Here are several things I can see need improvement in 
 - Deploy our service to kubernetes. Hydra already provides [Helm Charts for that](https://github.com/ory/k8s)
 - Making sure to follow Hydra's production guide before deploying our services. [Link](https://www.ory.sh/docs/hydra/production)
 - Put our services behind an API Gateway or reverse proxy so that all our services are available at one address
+- Add https certificates to our services, this may be easier with a reverse proxy/API Gateway. This is necessary because OAuth 2 simply doesn't have any protection without it
 - Protect a web service's resources(a resource server) with our authorization server
 - Integrate with Ory's other projects such as [Keto](https://github.com/ory/keto) to provide Access Control rules processing
 
