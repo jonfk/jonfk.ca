@@ -1,6 +1,6 @@
 ---
 title: Integrating Ory Hydra OAuth 2.0 with a Rust web service
-date: 2020-01-12
+date: 2020-01-18
 tags: rust oauth2 hydra http
 ---
 
