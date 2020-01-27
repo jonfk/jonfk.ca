@@ -93,12 +93,18 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    /* {
+     *   resolve: "gatsby-plugin-web-font-loader",
+     *   options: {
+     *     google: {
+     *       families: ["Alegreya SC", "PT Sans", "Ubuntu Mono"],
+     *     },
+     *   },
+     * }, */
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ["Alegreya SC", "PT Sans", "Ubuntu Mono"],
-        },
+        fonts: [{ family: `Alegreya SC` }, { family: `PT Sans` }, { family: `Ubuntu Mono` }],
       },
     },
     `gatsby-transformer-yaml`,
