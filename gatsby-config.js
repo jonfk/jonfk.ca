@@ -104,7 +104,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        fonts: [{ family: `Alegreya SC` }, { family: `PT Sans` }, { family: `Ubuntu Mono` }],
+        fonts: [{ family: `Alegreya SC`, text: `JONFK` }, { family: `Ubuntu Mono` }],
       },
     },
     `gatsby-transformer-yaml`,
