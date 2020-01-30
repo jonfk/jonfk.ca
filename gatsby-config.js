@@ -94,11 +94,9 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ["Alegreya SC", "PT Sans", "Ubuntu Mono"],
-        },
+        fonts: [{ family: `Alegreya SC`, text: `JONFK` }, { family: `Ubuntu Mono` }],
       },
     },
     `gatsby-transformer-yaml`,
