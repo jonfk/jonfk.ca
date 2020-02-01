@@ -5,8 +5,8 @@ tags: automerge typescript javascript react redux crdt experiment
 ---
 
 You will find the code and output from the work described here at the following links:
-- https://github.com/jonfk/text-crdt-experiment-automerge-ts
-- http://jonfk.github.io/text-crdt-experiment-automerge-ts 
+- [Github Repo](https://github.com/jonfk/text-crdt-experiment-automerge-ts)
+- [Web App](http://jonfk.github.io/text-crdt-experiment-automerge-ts)
 
 ## Automerge
 
@@ -112,8 +112,8 @@ in mind. The updates to the Text data structure took a bit too long (moderate up
 the storage overhead of the data structure was also way too high (3KB of text took 650KB of storage for the data structure 
 which is about a 200x overhead).
 
-Check out the code here https://github.com/jonfk/text-crdt-experiment-automerge-ts and the webapp is hosted here 
-https://jonfk.github.io/text-crdt-experiment-automerge-ts/.
+Check out the code in the [Github repo](https://github.com/jonfk/text-crdt-experiment-automerge-ts) and the [web app](
+https://jonfk.github.io/text-crdt-experiment-automerge-ts/).
 
 I will keep an eye out for it in the future as it improves. The author is working on improving the performance of the Text 
 data structure and overall library as these issue indicate.
