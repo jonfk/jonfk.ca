@@ -65,7 +65,7 @@ in the Javascript ecosystem fills me with much joy. Even if Typescript doesn't h
 covers all cases that can occur in Javascript, it's still better than nothing. That is why I wanted to get some familiarity
 with it.
 
-After about 15mins on its [documentation](https://www.typescriptlang.org/docs/home.html), I find myself having enough of a
+After about 15mins on its [documentation](https://www.typescriptlang.org/docs/home.html), I found myself having enough of a
 grasp of the language to start using it in a project. So that's encouraging.
 [React](https://react-redux.js.org/using-react-redux/static-typing),
 [Redux](https://redux.js.org/recipes/usage-with-typescript) and
