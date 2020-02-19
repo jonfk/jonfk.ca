@@ -1,6 +1,6 @@
 {
   "name": "jonfk-ca-gatsby-site",
-  "type": "module",
+  "type": "commonjs",
   "private": true,
   "description": "jonfk.ca build with gatsby",
   "version": "0.1.0",
