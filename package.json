@@ -30,7 +30,7 @@
     "gatsby-source-filesystem": "^2.1.57",
     "gatsby-transformer-remark": "^2.6.59",
     "gatsby-transformer-sharp": "^2.4.2",
-    "gatsby-transformer-yaml": "^2.2.27",
+    "gatsby-transformer-yaml": "^2.3.1",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
