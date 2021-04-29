@@ -1,0 +1,68 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  reviewers:
+  - jonfk
+  ignore:
+  - dependency-name: date-fns
+    versions:
+    - 2.16.1
+    - 2.17.0
+    - 2.18.0
+    - 2.19.0
+    - 2.20.0
+    - 2.20.1
+    - 2.20.2
+    - 2.20.3
+  - dependency-name: gatsby-image
+    versions:
+    - 2.10.0
+    - 2.11.0
+    - 3.0.0
+    - 3.1.0
+    - 3.2.0
+    - 3.3.0
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+  - dependency-name: gatsby
+    versions:
+    - 2.31.1
+    - 2.32.0
+    - 2.32.10
+    - 2.32.11
+    - 2.32.2
+    - 2.32.3
+    - 2.32.4
+    - 2.32.6
+    - 2.32.8
+    - 2.32.9
+  - dependency-name: gatsby-plugin-sharp
+    versions:
+    - 2.13.3
+    - 2.13.4
+    - 2.14.0
+    - 2.14.1
+    - 2.14.2
+  - dependency-name: gatsby-plugin-feed
+    versions:
+    - 2.12.0
+    - 2.13.0
+  - dependency-name: gatsby-transformer-sharp
+    versions:
+    - 2.11.0
+    - 2.12.0
+  - dependency-name: gatsby-remark-images
+    versions:
+    - 3.10.0
+    - 3.11.0
+  - dependency-name: lodash
+    versions:
+    - 4.17.20
+  - dependency-name: elliptic
+    versions:
+    - 6.5.3
