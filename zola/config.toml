@@ -1,0 +1,14 @@
+base_url = "https://www.jonfk.ca"
+title = "Jonfk"
+description = "jonfk's home on the web"
+
+compile_sass = true
+insert_anchor_links = true
+build_search_index = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "kronuz"
+
+[extra]
+author = "Jonathan Fok kan"

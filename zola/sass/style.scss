@@ -1,0 +1,31 @@
+
+header a {
+    text-decoration: none;
+}
+
+header h1 a {
+    color: rgb(170, 0, 0);
+    font-family: 'Alegreya SC', serif;
+    font-weight: 800;
+    font-size: 2em;
+}
+
+header nav {
+    font-family: 'PT Sans', Helvetica, arial, sans-serif;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+header nav li {
+    display: inline;
+}
+
+header nav a {
+    color: #aaa;
+    margin-left: 1em;
+    font-weight: 500;
+    font-size: 1.5em;
+}
