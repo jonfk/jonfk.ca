@@ -1,3 +1,16 @@
+body {
+    font-family: 'Helvetica','Roboto','arial',sans-serif;
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12.5%;
+    max-width: 1400px;
+    font-size: 112%;
+}
+
+h2 {
+    font-size: 180%;
+}
 
 header a {
     text-decoration: none;
@@ -28,4 +41,14 @@ header nav a {
     margin-left: 1em;
     font-weight: 500;
     font-size: 1.5em;
+}
+
+.blogpostlist ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.blogpostlist li {
+    margin-bottom: 1.2rem;
 }
