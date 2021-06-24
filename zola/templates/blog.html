@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block content %}
+
+<main>
+    <section>
+        <h1>{{page.title}}</h1>
+        {{ macros::display_date(date=page.date) }}
+        {{page.content | safe}}
+    </section>
+</main>
+
+{% endblock content %}

@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
 
 {% block content %}
 {% set blog = get_section(path="blog/_index.md") %}
 <main>
     <section>
-        <h2>Posts</h2>
+        <h1>Posts</h1>
         <div class="blogpostlist">
             <ul>
                 {% for page in blog.pages %}
                 <li>
-                    <time style="color:#777;font-family:Ubuntu Mono,monospace" datetime="{{ page.date }}">{{ page.date | date(format="%d %b %Y") }}</time> » <a href="{{ page.permalink }}">{{ page.title }}</a>
+                    {{ macros::display_date(date=page.date) }} » <a href="{{ page.permalink }}">{{ page.title }}</a>
                 </li>
                 {% endfor %}
             </ul>

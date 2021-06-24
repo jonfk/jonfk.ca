@@ -1,0 +1,5 @@
+{% macro display_date(date) %}
+
+<time style="color:#777;font-family:Ubuntu Mono,monospace" datetime="{{ date }}">{{ date | date(format="%d %b %Y") }}</time>
+
+{% endmacro input %}

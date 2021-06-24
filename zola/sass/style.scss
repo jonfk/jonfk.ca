@@ -1,15 +1,38 @@
 body {
     font-family: 'Helvetica','Roboto','arial',sans-serif;
+    color: hsla(0,0%,0%,0.8);
     width: 87.5%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 12.5%;
-    max-width: 1400px;
+    max-width: 960px;
     font-size: 112%;
 }
 
-h2 {
-    font-size: 180%;
+main {
+    line-height: 1.75rem;
+}
+
+pre {
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: .3em;
+}
+
+pre, code {
+    font-family: 'Ubuntu Mono','Consolas',monospace;
+    line-height: 1.5;
+    white-space: pre;
+}
+
+.code-title {
+    margin-bottom: -1.1em;
+    padding: .7em 1em;
+    font-family: Ubuntu Mono,Consolas,monospace;
+    background-color: #bbbbbd;
+    color: #000;
+    z-index: 0;
+    border-top-left-radius: .3em;
+    border-top-right-radius: .3em;
 }
 
 header a {
@@ -50,5 +73,5 @@ header nav a {
 }
 
 .blogpostlist li {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.0rem;
 }
