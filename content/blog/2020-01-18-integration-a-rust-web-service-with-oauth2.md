@@ -119,7 +119,8 @@ $ tree
 
 To do anything we will need some dependencies to get our server working. Add the following below in `[dependencies]`.
 
-```toml:title=Cargo.toml
+{{ code_title(title="cargo.toml") }}
+```toml
 ...
 [dependencies]
 warp = { git = "https://github.com/seanmonstar/warp.git", rev = "e94309e274872efed34e2a80f1e4553a45963510" }
@@ -134,7 +135,8 @@ env_logger = "0.7"
 We can now use these dependencies to provide a basic web service. Let's write a basic hello world endpoint as in the
 example.
 
-```rust:title=src/main.rs
+{{ code_title(title="src/main.rs") }}
+```rust
 use warp::{self, path, Filter};
 
 fn main() {
@@ -171,7 +173,8 @@ we will be using the [Tera templating library](https://crates.io/crates/tera). T
 libraries in rust and you can find a non-exhaustive list [here](https://www.arewewebyet.org/topics/templating/).
 So let's add that dependency and use it.
 
-```toml:title=Cargo.toml
+{{ code_title(title="Cargo.toml") }}
+```toml
 ...
 [dependencies]
 ...
@@ -179,7 +182,8 @@ So let's add that dependency and use it.
 tera = "1.0.1"
 ```
 
-```rust:title=src/main.rs
+{{ code_title(title="src/main.rs") }}
+```rust
 use tera::{Context, Tera};
 use warp::{self, path, Filter};
 
@@ -262,7 +266,8 @@ corresponding form post endpoints.
 We will first need to update dependencies to add [Serde](https://serde.rs/) which is the library in
 Rust to serialize/deserialize to various data formats.
 
-```toml:title=Cargo.toml
+{{ code_title(title="Cargo.toml") }}
+```toml
 ...
 [dependencies]
 ...
@@ -271,13 +276,15 @@ serde = { version = "1.0", features = ["derive"] }
 
 With this let's implement the login page and form handler first.
 
-```rust:title=src/main.rs
+{{ code_title(title="src/main.rs") }}
+```rust
 pub mod view;
 ```
 
 Will create a view module where we can put our template rendering functions.
 
-```rust:title=src/view.rs
+{{ code_title(title="src/view.rs") }}
+```rust
 use tera::Tera;
 use warp::{self, Filter};
 
@@ -322,7 +329,8 @@ pub fn tera_templates() -> Tera {
 And now for the actual login page using the rendering template we just created in the
 `view` module.
 
-```rust:title=src/main.rs
+{{ code_title(title="src/main.rs") }}
+```rust
 use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
 use warp::{self, Filter};
@@ -364,6 +372,7 @@ pub fn login_page() -> warp::filters::BoxedFilter<(impl warp::Reply,)> {
 If we submit the login form from the login page, we should receive a 404. To fix that
 we need to implement the form post handling endpoint.
 
+{{ code_title(title="src/main.rs") }}
 ```rust:title=src/main.rs
 use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
@@ -403,7 +412,8 @@ We now have a working login page and login handler which returns the form body b
 as json. So if you try to login with the username, `"username"`, and password,
 `"password"`, we should receive the following.
 
-```json:title=http://localhost:3000/login
+{{ code_title(title="http://localhost:3000/login") }}
+```json
 {
   "username": "username",
   "password": "password",
@@ -422,7 +432,8 @@ I found is to run hydra with their [docker-compose](https://github.com/ory/hydra
 We will then make a few modifications to it. We could run hydra with an in-memory database, but with a local postgres database
 we will be able to see how the api calls we will be doing to the hydra instance affect its data store.
 
-```yaml:title=docker-compose.yml
+{{ code_title(title="docker-compose.yml") }}
+```yaml
 version: "3.3"
 services:
   postgres:
@@ -467,7 +478,8 @@ services:
     restart: on-failure
 ```
 
-```bash:title=initdb.sh
+{{ code_title(title="initdb.sh") }}
+```bash
 #!/bin/bash
 set -e
 
@@ -501,7 +513,8 @@ openapi-generator-cli generate -i https://raw.githubusercontent.com/ory/hydra/v1
 Or even better, instead of installing the `openapi-generator-cli`, we can use the docker image to do the same thing and
 let's put it inside a bash script to be able to reuse it if necessary and remember next time we need to regenerate.
 
-```bash:title=generate-hydra-api.sh
+{{ code_title(title="generate-hydra-api.sh") }}
+```bash
 #!/bin/bash
 
 set -o errexit
@@ -525,6 +538,7 @@ mv src auth
 
 Change the package name in the `Cargo.toml` to auth to match the directory name.
 
+{{ code_title(title="auth/Cargo.toml") }}
 ```toml:title=auth/Cargo.toml
 [package]
 name = "auth" # <--- name to change
@@ -538,7 +552,8 @@ edition = "2018"
 
 Then create a `Cargo.toml` file with the 2 sub crates we now have.
 
-```toml:title=Cargo.toml
+{{ code_title(title="Cargo.toml") }}
+```toml
 [workspace]
 
 members = [
@@ -583,7 +598,8 @@ shadowing the `client` from the function parameters. The solution is just as sim
 let's just rename the function parameter to `client_id` since that's actually what is
 being sent here. The changed lines will be as follows.
 
-```rust:title=hydra/src/apis/admin_api.rs
+{{ code_title(title="hydra/src/apis/admin_api.rs") }}
+```rust
 ...
     fn revoke_consent_sessions(&self, subject: &str, client_id: Option<&str>) -> Result<(), Error> {
         let configuration: &configuration::Configuration = self.configuration.borrow();
@@ -630,14 +646,16 @@ that helps the ApiClient figure out how to make calls to the hydra instance.
 Similar to the Tera template renderer, we will create a Warp Filter that will contain the AdminApiClient and pass it to the
 function handling the endpoints. But first we need to add the dependency to the hydra crate to our main auth crate.
 
-```toml:title=auth/Cargo.toml
+{{ code_title(title="auth/Cargo.toml") }}
+```toml
 [dependencies]
 ...
 hydra = { path = "../hydra" }
 ...
 ```
 
-```rust:title=auth/src/main.rs
+{{ code_title(title="auth/src/main.rs") }}
+```rust
 ...
 use hydra::apis::{configuration::Configuration, AdminApiClient};
 use std::rc::Rc;
@@ -687,7 +705,8 @@ Now instead of `AdminApiClient::new(Rc::new(configuration))` we can pass it `Adm
 
 Let's implement the accept login request logic for the hydra integration in the login page.
 
-```rust:title=auth/src/main.rs
+{{ code_title(title="auth/src/main.rs") }}
+```rust
 use log::info;
 use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
@@ -796,7 +815,8 @@ I also imported the `std::str::FromStr` trait so that it can be used to convert 
 
 As for handling the login form, we will be following similar logic as above.
 
-```rust:title=auth/src/main.rs
+{{ code_title(title="auth/src/main.rs") }}
+```rust
 ...
 
 pub fn accept_login() -> warp::filters::BoxedFilter<(impl warp::Reply,)> {
@@ -856,7 +876,8 @@ enabled through an environment variable, by default that env var is `RUST_LOG`.
 
 I will also add the log Filter from warp to give us access logs on our endpoints.
 
-```rust:title=auth/src/main.rs
+{{ code_title(title="auth/src/main.rs") }}
+```rust
 #[tokio::main]
 async fn main() {
     if ::std::env::var_os("RUST_LOG").is_none() {
@@ -914,7 +935,8 @@ like to be able to share as a library into a `lib.rs` file.
 
 We will add a function that returns our routes which can then be used from the `main.rs` file.
 
-```rust:title=auth/src/lib.rs
+{{ code_title(title="auth/src/lib.rs") }}
+```rust
 ...
 pub fn routes() -> warp::filters::BoxedFilter<(impl warp::reply::Reply,)> {
     auth_routes()
@@ -925,7 +947,8 @@ pub fn routes() -> warp::filters::BoxedFilter<(impl warp::reply::Reply,)> {
 ...
 ```
 
-```rust:title=auth/src/main.rs
+{{ code_title(title="auth/src/main.rs") }}
+```rust
 use auth;
 use warp;
 
@@ -944,7 +967,8 @@ async fn main() {
 
 Then we will have to expose the structs we created to model the form bodies of our login and consent apis.
 
-```rust:title=auth/src/lib.rs
+{{ code_title(title="auth/src/lib.rs") }}
+```rust
 ...
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct LoginFormBody {
@@ -971,7 +995,8 @@ pub struct ConsentFormBody {
 
 Now that we have a library crate we can get to the actual work of writing the test.
 
-```toml:title=auth/Cargo.toml
+{{ code_title(title="auth/Cargo.toml") }}
+```toml
 ...
 [dev-dependencies]
 uuid = { version = "0.8", features = ["v4"] }
@@ -981,7 +1006,8 @@ reqwest = { version = "0.10.0", features = ["json", "blocking", "cookies"] }
 
 The body of a basic test is as follows.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 #[test]
 fn basic_test() {
     assert!(true);
@@ -990,7 +1016,8 @@ fn basic_test() {
 
 Since this is an integration test we may want to check that our external dependencies are up.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 use reqwest::{self, Url};
 
 #[test]
@@ -1015,7 +1042,8 @@ As we saw in our manual test, we will first need to create an oauth2 client to d
 which type of oauth2 client we want to create, we should decide what we will be testing. So let's say
 we will be testing the authorization code grant type.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 use hydra::apis::{configuration::Configuration, AdminApi, AdminApiClient};
 use reqwest::{self, Url};
 use std::sync::Arc;
@@ -1054,7 +1082,8 @@ fn create_oauth2_client(hydra_admin_client: &AdminApiClient) -> hydra::models::O
 
 With the created OAuth 2 client, we can initiate an oauth2 flow. For that, we will use an [OAuth2 library](https://crates.io/crates/oauth2).
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 
 #[test]
 fn login_and_consent_flow() {
@@ -1110,7 +1139,8 @@ Usually the authorize url would then be used to redirect the user (resource owne
 authorization process. But since we are writing an automated test, we will be emulating the browser
 with an http client and call our login and consent apis directly.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 
 fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
     ...
@@ -1172,7 +1202,8 @@ which would also have made our code much shorter.
 
 Same thing for the consent.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 
 fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
     ...
@@ -1254,7 +1285,8 @@ fn perform_consent_flow(
 With the final redirected url, we will receive an auth code that is used in the authorization code grant type
 to get our access token.
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 
 fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
     let auth_code = Url::parse(&redirected_url)
@@ -1287,7 +1319,8 @@ fn initiate_oauth2_code_flow(client_id: &str, client_secret: &str) -> String {
 
 Now that we have an access token, we should probably see if we can verify it with the [introspection endpoint](#oauth2-introspection).
 
-```rust:title=auth/tests/oauth2_auth_code_end_to_end_test.rs
+{{ code_title(title="auth/tests/oauth2_auth_code_end_to_end_test.rs") }}
+```rust
 #[test]
 fn login_and_consent_flow() {
     ...

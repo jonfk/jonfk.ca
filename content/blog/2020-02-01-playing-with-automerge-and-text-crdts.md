@@ -91,7 +91,8 @@ the corresponding code in the transpiled output using judiciously placed unique 
 wasn't being transpiled to the same output we would expect. The solution we ended up implementing was to add a `.bind()` which
 looked something like this.
 
-```js:title=src/utils/automerge.js
+{{ code_title(title="src/utils/automerge.js") }}
+```js
 ...
 doc.text.insertAt?.bind(doc.text)(idx, changedText);
 ...
