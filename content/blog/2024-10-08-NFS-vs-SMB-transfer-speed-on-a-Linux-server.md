@@ -4,7 +4,7 @@ date: 2024-10-08
 tags: self-hosting
 ---
 
-I also posted the full data in a git repo at https://github.com/jonfk/nfs-smb-benchmarking-experiment.
+I also posted the full data in a git repo at [https://github.com/jonfk/nfs-smb-benchmarking-experiment](https://github.com/jonfk/nfs-smb-benchmarking-experiment).
 
 # NFS vs SMB transfer speed on a Linux server
 
@@ -106,7 +106,7 @@ The NAS and server are connected wired through a 2.5GbE switch.
 
 # Methodology
 
-For more details on the exact script see [fs_bench.sh](./fs_bench.sh).
+For more details on the exact script see [fs_bench.sh](https://github.com/jonfk/nfs-smb-benchmarking-experiment/blob/main/fs_bench.sh).
 
 To test the filesystems speed, I ran the fs_bench.sh script which runs fio with the 5 test types on both mounts:
 
@@ -118,8 +118,8 @@ To test the filesystems speed, I ran the fs_bench.sh script which runs fio with 
 
 # Results
 
-For the raw results see [fio_output.txt](./fio_output.txt). Otherwise here a summary created using the 
-[analysis.py](./analysis.py) script follows in the next section.
+For the raw results see [fio_output.txt](https://github.com/jonfk/nfs-smb-benchmarking-experiment/blob/main/fio_output.txt). Otherwise here a summary created using the 
+[analysis.py](https://github.com/jonfk/nfs-smb-benchmarking-experiment/blob/main/analysis.py) script follows in the next section.
 
 ## Performance Comparison: nfs vs smb
 
