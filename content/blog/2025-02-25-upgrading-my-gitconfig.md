@@ -31,6 +31,11 @@ The article detailed settings that even core Git developers change from the defa
 
 One of the [linked articles](https://blog.gitbutler.com/git-autosquash/) about `git autosquash` was particularly intriguing. At a high level, autosquash allows you to create "fixup" commits that automatically get squashed into the right place during an interactive rebase. Instead of manually reordering commits during a rebase, you can mark a commit as a fixup for a previous commit, and Git will handle the placement automatically. This would make one of my common Git workflows much more efficient, though I'll need to experiment with it more before it fully clicks.
 
+<details>
+	<summary>A video showing how autosquash works</summary>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/Md44rcw13k4?si=ZhNb3o0zH2Ix3oCv&amp;start=745" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</details>
+
 From the Hacker News comments, I discovered Delta, a syntax-highlighting pager for Git. I've implemented it, and while I appreciate the syntax highlighting, I find the UI a bit busy. I'm curious to see how it displays three-way diffs with `zdiff3`, but I might need some time to get used to it compared to the plain diff view I'm accustomed to.
 
 I also learned that adding `-p` to various Git commands like `log` and `add` will show the actual changes, which is super useful.
