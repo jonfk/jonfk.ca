@@ -297,4 +297,4 @@ sequenceDiagram
 ```
 
 Check out the repo where I tried to create a minimal example of what I looked into here.
-https://github.com/jonfk/nextjs-14-server-components-updates-post
+[Github link](https://github.com/jonfk/nextjs-14-server-components-updates-post)

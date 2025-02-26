@@ -4,14 +4,14 @@ description = "jonfk's home on the web"
 default_language = "en"
 
 compile_sass = true
-insert_anchor_links = true
 build_search_index = true
-generate_feed = true
-feed_filename = "rss.xml"
+generate_feeds = true
+feed_filenames = ["rss.xml"]
 
 [markdown]
 highlight_code = true
 highlight_theme = "monokai"
+insert_anchor_links = "heading"
 
 [extra]
 author = "Jonathan Fok kan"

@@ -16,9 +16,22 @@ Before we start, all the code we will be working on will be pushed to the follow
 
 What will we be doing in this post:
 
-```toc
-# This code block gets replaced with the TOC
-```
+- [What is OAuth 2.0?](#what-is-oauth-2-0)
+    - [When should you used it?](#when-should-you-used-it)
+    - [Implementing authorization with OAuth 2.0](#implementing-authorization-with-oauth-2-0)
+- [Hydra: An OpenID Certified OAuth 2.0 Server and OpenID Connect Provider](#hydra-an-openid-certified-oauth-2-0-server-and-openid-connect-provider)
+  - [Integrating with Hydra](#integrating-with-hydra)
+- [A Rust web service](#a-rust-web-service)
+  - [Hello World](#hello-world)
+  - [Login and consent](#login-and-consent)
+  - [Setting up the Hydra services](#setting-up-the-hydra-services)
+  - [Generating the Hydra OpenApi Client](#generating-the-hydra-openapi-client)
+  - [Updating our login and consent implementation](#updating-our-login-and-consent-implementation)
+    - [Enabling logging](#enabling-logging)
+  - [Testing our login and consent integration](#testing-our-login-and-consent-integration)
+  - [Async Rust](#async-rust)
+- [Where to go from here?](#where-to-go-from-here)
+- [References](#references)
 
 ## What is OAuth 2.0?
 
@@ -373,7 +386,7 @@ If we submit the login form from the login page, we should receive a 404. To fix
 we need to implement the form post handling endpoint.
 
 {{ code_title(title="src/main.rs") }}
-```rust:title=src/main.rs
+```rust
 use serde::{Deserialize, Serialize};
 use tera::{Context, Tera};
 use warp::{self, Filter};
@@ -539,7 +552,7 @@ mv src auth
 Change the package name in the `Cargo.toml` to auth to match the directory name.
 
 {{ code_title(title="auth/Cargo.toml") }}
-```toml:title=auth/Cargo.toml
+```toml
 [package]
 name = "auth" # <--- name to change
 version = "0.1.0"
