@@ -36,7 +36,7 @@ One of the [linked articles](https://blog.gitbutler.com/git-autosquash/) about `
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/Md44rcw13k4?si=ZhNb3o0zH2Ix3oCv&amp;start=745" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </details>
 
-From the Hacker News comments, I discovered Delta, a syntax-highlighting pager for Git. I've implemented it, and while I appreciate the syntax highlighting, I find the UI a bit busy. I'm curious to see how it displays three-way diffs with `zdiff3`, but I might need some time to get used to it compared to the plain diff view I'm accustomed to.
+From the Hacker News comments, I discovered [Delta](https://dandavison.github.io/delta/), a syntax-highlighting pager for Git. I've implemented it, and while I appreciate the syntax highlighting, I find the UI a bit busy. I'm curious to see how it displays three-way diffs with `zdiff3`, but I might need some time to get used to it compared to the plain diff view I'm accustomed to.
 
 I also learned that adding `-p` to various Git commands like `log` and `add` will show the actual changes, which is super useful.
 
