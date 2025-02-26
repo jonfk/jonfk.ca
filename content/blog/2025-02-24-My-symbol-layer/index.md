@@ -58,6 +58,8 @@ Without much further ado, here are the layouts.
 
 ![keyboard layouts](./keyboard-layout.png)
 
+[Layout on keyboard-layout-editor](https://www.keyboard-layout-editor.com/##@@_a:7&w:14&h:1&d:true%3B&=Standard%2060%25%2F%2F65%25%20Apple%20Keyboard%20-%20QWERTY%20Base%20layer%3B&@%3B&@=%60&=1&=2&=3&=4&=5&=6&=7&=8&=9&=0&=-&=%2F=&_w:2%3B&=BKSP%3B&@_w:1.5%3B&=TAB&=Q&=W&=E&=R&=T&=Y&=U&=I&=O&=P&=%5B&=%5D&_w:1.5%3B&=%5C%3B&@_w:1.75%3B&=CAPS&=A&=S&=D&=F&=G&=H&=J&=K&=L&=%2F%3B&='&_w:2.25%3B&=RETURN%3B&@_w:2.25%3B&=SHIFT&=Z&=X&=C&=V&=B&=N&=M&=,&=.&=%2F%2F&_w:2.75%3B&=SHIFT%3B&@_w:1.25%3B&=LWIN&_w:1.25%3B&=LALT&_w:1.25%3B&=LCTL&_w:6.25%3B&=SPACE&_w:1.25%3B&=RCTL&_w:1.25%3B&=RALT&_w:1.25%3B&=Arrows%3B&@%3B&@_a:7&w:14&h:1&d:true%3B&=Dvorak%20Base%20layer%3B&@%3B&@_a:4%3B&=%60&=1&=2&=3&=4&=5&=6&=7&=8&=9&=0&=%5B&=%5D&_w:2%3B&=BKSP%3B&@_w:1.5%3B&=TAB&='&=,&=.&=P&=Y&=F&=G&=C&=R&=L&=%2F%2F&=%2F=&_w:1.5%3B&=%5C%3B&@_w:1.75%3B&=CAPS&=A&=O&=E&=U&=I&=D&=H&=T&=N&=S&=-&_w:2.25%3B&=RETURN%3B&@_w:2.25%3B&=SHIFT&=%2F%3B&=Q&=J&=K&=X&=B&=M&=W&=V&=Z&_w:2.75%3B&=SHIFT%3B&@_w:1.25%3B&=LWIN&_w:1.25%3B&=LALT&_w:1.25%3B&=LCTL&_w:6.25%3B&=SPACE&_w:1.25%3B&=RCTL&_w:1.25%3B&=RALT&_w:1.25%3B&=Arrows%3B&@%3B&@_a:7&w:14&h:1&d:true%3B&=Dvorak%20Symbol%20layer%3B&@%3B&@_a:4%3B&=&=!&=%2F@&=%23&=$&=%25&=%5E&=%2F&&=*&=(&=)&=%7B&=%20%7D&_w:2%3B&=BKSP%3B&@_w:1.5%3B&=TAB&=%22&=%3C&=%3E&=&=&=&=&=&=&=&=%2F%2F&=%2F=&_w:1.5%3B&=%7C%3B&@_w:1.75%3B&=CAPS&=%5B&=%5D&=(&=)&=&=%20%5E&=%2F&&=*&=%2F%2F&=%2F=&=&_w:2.25%3B&=RETURN%3B&@_w:2.25%3B&=SHIFT&=%2F:&=&=%7B&=%7D&=&=&=&=&=&=&_w:2.75%3B&=SHIFT%3B&@_w:1.25%3B&=LWIN&_w:1.25%3B&=LALT&_w:1.25%3B&=LCTL&_w:6.25%3B&=SPACE&_w:1.25%3B&=RCTL&_w:1.25%3B&=RALT&_w:1.25%3B&=Arrows)
+
 <details>
 	<summary>If you prefer plain text</summary>
 
