@@ -56,6 +56,11 @@ way.
 
 Without much further ado, here are the layouts.
 
+![keyboard layouts](./keyboard-layout.png)
+
+<details>
+	<summary>If you prefer plain text</summary>
+
 ```
 # Standard 60%/65% Apple Keyboard 
 
@@ -101,6 +106,7 @@ Without much further ado, here are the layouts.
 │ LWIN │LALT│ LCTL│          SPACE        │ RCTL│RALT│ Arrows │
 └──────┴────┴─────┴───────────────────────┴─────┴────┴────────┘
 ```
+</details>
 
 # Implementation
 
