@@ -84,16 +84,16 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 ```
 
-1. TPM is the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm).
+1. **TPM** is the [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm).
   It's the easiest way to manage plugins. Although it is a bit annoying that I need to manually fetch and initialize
   it before it can do it's work. Maybe one day it could come default with a tmux install.
-2. tmux-sensible is a small package with a bunch of default settings that are pretty sensible. I used to carry around
+2. **tmux-sensible** is a small package with a bunch of default settings that are pretty sensible. I used to carry around
   a bunch of such settings and found that that package was pretty much what I wanted and cleaned up my config.
-3. catppuccin is nice for the eyes.
-4. tmux-yank allows to yank to the system clipboard which makes integrating with other applications much easier.
-5. vim-tmux-navigator gives keybinds for switching between tmux panes and nvim panes easy. I honestly used it very little
+3. **catppuccin** is nice for the eyes.
+4. **tmux-yank** allows to yank to the system clipboard which makes integrating with other applications much easier.
+5. **vim-tmux-navigator** gives keybinds for switching between tmux panes and nvim panes easy. I honestly used it very little
 because I rarely do splits in tmux.
-6. tmux-resurrect and tmux-continuum for session persistence. Resurrect restarts sessions from the previous instance 
+6. **tmux-resurrect** and **tmux-continuum** for session persistence. Resurrect restarts sessions from the previous instance 
 of tmux and continuum autosaves the sessions so I don't have to think about it.
 
 # What am I going to do in Neovim?
@@ -111,7 +111,7 @@ has `:mksessions` which allows you to create sessions and I'll be using a few pl
 what I was doing with tmux-resurrect and tmux-continuum which is to restart sessions whenever the tmux instance was 
 killed or in this case the Neovim instance gets killed and autosave the sessions as I am using them.
 
-I am currently trying out the auto-session plugin. You can see the changes to my config here: [commit](https://github.com/jonfk/dotfiles/commit/7d6bea52b6088bef6b50dc2b7e7990eb513e4b37).
+I am currently trying out the **auto-session** plugin. You can see the changes to my config here: [commit](https://github.com/jonfk/dotfiles/commit/7d6bea52b6088bef6b50dc2b7e7990eb513e4b37).
 
 For terminal buffers, I can start them with `:terminal` and I can switch between the buffers as I did before with 
 telescope. I can even rename the terminal buffers with `:file new-buffer-name` if I ever need longer running instances.
