@@ -54,8 +54,12 @@ Use this when you’ve spotted a mapping but don’t know which plugin or file c
 " Get every mapping (across all modes) and dump to a scratch buffer
 :lua vim.print(vim.tbl_map(function(m) return m.lhs end, vim.api.nvim_get_keymap('')))
 
-" Show plugin profiles in LazyVim
-:Lazy profile
+" Fuzzy-find every help tag—great for plugin docs
+:Telescope help_tags
+
+" Jump straight to the help page for a specific plugin (e.g. Telescope)
+:help telescope.nvim
+" (Most plugins expose a tag that matches their repo name.)
 ```
 
 Each of these helps, but none gives me the single dashboard I’m after.
