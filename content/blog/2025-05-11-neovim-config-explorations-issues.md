@@ -23,17 +23,29 @@ In Neovim land, a *picker* is an interactive fuzzy-finder window—typically pow
 
 Put together, that’s a lot of jumping around and context switching.
 
-## Experiments So Far
+## My Configs So Far
 
-This rabbit hole began when I decided it was time to **upgrade my own config** and figured I’d see what other distros were doing right. After a long stint on **kickstart.nvim**, I sampled LazyVim, LunarVim, NvChad, and friends.
+I have been using **kickstart.nvim** for a while now and this rabbit hole began when I decided it was time to **upgrade my own config** and figured I’d see what other distros were doing right. I tried out LazyVim, LunarVim, NvChad, and friends.
 
-* **Kickstart** – You read the entire config and own it. I still had blind spots (the `lspconfig` / Mason interactions), but I still felt like I knew my config and where to change something if I needed to.  
-* **Full-featured distros** – A bunch of Lua wires everything up, but these distros don't usually expect the average user to read through them. You’re *meant* to override their configs to customize them, yet finding the right lever is a scavenger hunt. (I will admit that only LazyVim got a real trial. I only played around a bit with LunarVim)
+### Kickstart
 
-Bottom line: distro exploration feels like spelunking without a headlamp.
+You read the entire config and own it. I still had blind spots (the `lspconfig` / Mason interactions), but I still felt like I knew my config and where to change something if I needed to. Because the expected use is to pull the config and start modifying it for your own use, I found upgrading your current kickstart config can get difficult. You have to handle merge conflicts, so of which can include major refactorings and outright changes to the plugins used by the config. This means that an upgrade is more than simply resolving merge conflicts to options, you might need to be ready to understand the config anew. 
 
-{% callout(type="info") %}
-**Quick demo: find *where* a mapping is defined**  
+This is why I found it easier to simply restart the config whenever I am upgrading kickstart. It's actually a pretty nice process since on every upgrade you understand neovim much more and can make deeper and more specific changes.
+
+### Full-featured distros
+
+A bunch of Lua wires everything up, but these distros don't usually expect the average user to read through them. You’re *meant* to override their configs to customize them, yet finding the right lever is a scavenger hunt. (I will admit that only LazyVim got a real trial. I only played around a bit with LunarVim)
+
+**Bottom line**: distro exploration feels like spelunking without a headlamp.
+
+## Exploration Fatigue
+
+It might very well be a skill issue on my part but I find that exploring a config to find out keymaps, commands and other configured settings quite scattered and not straightforward at all.
+
+**Quick demo: find *where* a mapping is defined**
+
+I use this when I've spotted a mapping but don’t know which plugin or file created it.
 
 ```vim
 " Normal-mode maps that start with <leader>f
@@ -42,10 +54,7 @@ Bottom line: distro exploration feels like spelunking without a headlamp.
 "     Last set from /path/to/plugin/file.lua line 42
 ```
 
-Use this when you’ve spotted a mapping but don’t know which plugin or file created it.
-{% end %}
-
-## Concrete Examples of “Exploration Fatigue”
+When I am exploring things generally, this is what I do.
 
 ```vim
 " List all normal-mode keymaps via Telescope
