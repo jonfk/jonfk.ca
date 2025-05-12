@@ -1,5 +1,5 @@
 ---
-title: Navigating Hidden Neovim Configs can be Tiring
+title: Exploring Neovim Configs can be Tiring
 date: 2025-05-11
 tags: neovim mcp llm learning
 ---
@@ -7,8 +7,10 @@ tags: neovim mcp llm learning
 I want a faster way to understand a Neovim setup than grepping through Lua or reading through multiple websites documentation.  
 Right now I can *sort of* discover keymaps via a picker `:lua Snacks.picker.keymap()`, `:Telescope keymaps`, or the classic `:map`, `:imap`, etc., and I can read plugin help—but there’s no single place that surfaces **everything** (keymaps, commands, plugin tweaks) in one go.
 
-> [!INFO] **What’s a “picker”?  
->**In Neovim land, a *picker* is an interactive fuzzy-finder window—typically powered by [**Telescope.nvim**](https://github.com/nvim-telescope/telescope.nvim) or Folke’s **Snacks** plugin—that lets you search lists (files, keymaps, commands) and act on a selected item.
+{% callout(type="info") %}
+**What’s a “picker”?**
+In Neovim land, a *picker* is an interactive fuzzy-finder window—typically powered by [**Telescope.nvim**](https://github.com/nvim-telescope/telescope.nvim) or Folke’s **Snacks** plugin—that lets you search lists (files, keymaps, commands) and act on a selected item.
+{% end %}
 
 ## Where Current Tools Fall Short
 
@@ -30,14 +32,18 @@ This rabbit hole began when I decided it was time to **upgrade my own config** a
 
 Bottom line: distro exploration feels like spelunking without a headlamp.
 
-> [!INFO] **Quick demo: find *where* a mapping is defined**  
-> ```vim
-> " Normal-mode maps that start with <leader>f
-> :verbose nmap <leader>f
-> " Output ends with something like:
-> "     Last set from /path/to/plugin/file.lua line 42
-> ```
-> Use this when you’ve spotted a mapping but don’t know which plugin or file created it.
+{% callout(type="info") %}
+**Quick demo: find *where* a mapping is defined**  
+
+```vim
+" Normal-mode maps that start with <leader>f
+:verbose nmap <leader>f
+" Output ends with something like:
+"     Last set from /path/to/plugin/file.lua line 42
+```
+
+Use this when you’ve spotted a mapping but don’t know which plugin or file created it.
+{% end %}
 
 ## Concrete Examples of “Exploration Fatigue”
 
@@ -64,15 +70,18 @@ Imagine chatting with your editor:
 
 Simply dumping config files into an LLM hits token limits on big distros.
 A more scalable path is to expose runtime APIs an LLM can call:
-- list installed plugins
-- fetch help for any command/topic
-- enumerate active keymaps with their sources
+
+* list installed plugins
+* fetch help for any command/topic
+* enumerate active keymaps with their sources
 
 With that, an MCP-style RPC server could feed structured answers to the model.
 There’s already a promising skeleton: [bigcodegen/mcp-neovim-server](https://github.com/bigcodegen/mcp-neovim-server) aimed at editing assistance; its architecture looks adaptable for this my use-case. I might be able to modify it to do what I want.
 
-> [!INFO] What’s MCP?
-> Model-Control-Protocol: a lightweight JSON-RPC layer that lets an LLM plugin talk to Neovim over stdio or TCP, request data, and send actions back.
+{% callout(type="info") %}
+What’s MCP?
+Model-Control-Protocol: a lightweight JSON-RPC layer that lets an LLM plugin talk to Neovim over stdio or TCP, request data, and send actions back.
+{% end %}
 
 Have you hacked on something similar, or know plugins I’ve missed?
 Drop me a note. I’d love to swap ideas and maybe prototype this together.
