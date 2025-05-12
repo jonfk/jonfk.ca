@@ -81,3 +81,49 @@ header nav a {
 .blogpostlist li {
     margin-bottom: 1.0rem;
 }
+
+.callout {
+  display: flex;
+  align-items: flex-start;
+  border-radius: .3em;
+  margin: 1.5em 0;
+  padding: .8em 1em;
+  font-family: 'PT Sans', sans-serif;
+  line-height: 1.5;
+
+  &-icon {
+    margin-right: .6em;
+    font-size: 1.2em;
+    flex-shrink: 0;
+  }
+
+  &-body {
+    flex: 1;
+  }
+
+  &.callout-info {
+    background-color: #e8f4fd;
+    border-left: 4px solid #2196F3;
+    color: #0c5460;
+  }
+  &.callout-warning {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffecb5;
+    color: #856404;
+  }
+  &.callout-error {
+    background-color: #f8d7da;
+    border-left: 4px solid #f5c6cb;
+    color: #721c24;
+  }
+  &.callout-success {
+    background-color: #d4edda;
+    border-left: 4px solid #c3e6cb;
+    color: #155724;
+  }
+  &.callout-tip {
+    background-color: #e2f0cb;
+    border-left: 4px solid #c0e0a4;
+    color: #2e5339;
+  }
+}

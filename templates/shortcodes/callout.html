@@ -1,0 +1,22 @@
+{# templates/shortcodes/callout.html #}
+{% set tp = type | default(value="info") %}
+
+{# pick the right Font Awesome icon #}
+{% if tp == "warning" %}
+  {% set icon = "fas fa-exclamation-triangle" %}
+{% elif tp == "error" %}
+  {% set icon = "fas fa-times-circle" %}
+{% elif tp == "success" %}
+  {% set icon = "fas fa-check-circle" %}
+{% elif tp == "tip" %}
+  {% set icon = "fas fa-lightbulb" %}
+{% else %}
+  {% set icon = "fas fa-info-circle" %}
+{% endif %}
+
+<div class="callout callout-{{ tp }}">
+  <i class="callout-icon {{ icon }}"></i>
+  <div class="callout-body">
+    {{ body | markdown | safe }}
+  </div>
+</div>
